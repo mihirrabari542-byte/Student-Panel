@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease;
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .page-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .form-header h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 24px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .form-header h2 i {
+            font-size: 28px;
+        }
+
+        .form-header p {
+            position: relative;
+            z-index: 2;
+            font-size: 13px;
+            opacity: 0.95;
+        }
+
+        .form-content {
+            padding: 35px 30px;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 14px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-title i {
+            color: #764ba2;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 8px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        label .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+
+        input[type=text],
+        input[type=file],
+        textarea {
+            width: 100%;
+            padding: 12px 14px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type=text]:focus,
+        input[type=file]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #f8faff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type=text]::placeholder,
+        textarea::placeholder {
+            color: #999;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+        }
+
+        .input-group input {
+            padding-right: 40px;
+        }
+
+        /* File Upload Styling */
+        .file-upload-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        input[type=file] {
+            display: none;
+        }
+
+        .file-upload-label {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 18px;
+            border: 2px dashed #667eea;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, transparent 100%);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: #667eea;
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        .file-upload-label:hover {
+            border-color: #764ba2;
+            background: linear-gradient(135deg, rgba(118, 75, 162, 0.05) 0%, transparent 100%);
+            color: #764ba2;
+        }
+
+        .file-upload-label i {
+            font-size: 18px;
+        }
+
+        /* Info Box */
+        .info-box {
+            background: linear-gradient(135deg, rgba(243, 156, 18, 0.1) 0%, rgba(230, 126, 34, 0.05) 100%);
+            border: 2px solid #f39c12;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 12px;
+            color: #d68910;
+            line-height: 1.6;
+        }
+
+        .info-box i {
+            color: #f39c12;
+            font-size: 16px;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .info-box strong {
+            color: #c0392b;
+        }
+
+        /* Button Styles */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 150px;
+            padding: 13px 20px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(243, 156, 18, 0.3);
+        }
+
+        .btn-secondary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn i {
+            font-size: 16px;
+        }
+
+        /* Loading Button */
+        .btn.loading {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .btn.loading:hover {
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 22px;
+                gap: 8px;
+            }
+
+            .page-header h1 i {
+                font-size: 24px;
+            }
+
+            .form-content {
+                padding: 25px 20px;
+            }
+
+            .form-section {
+                margin-bottom: 28px;
+            }
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+            .form-header {
+                padding: 25px 20px;
+            }
+
+            .form-header h2 {
+                font-size: 20px;
+                gap: 10px;
+            }
+
+            .form-header h2 i {
+                font-size: 24px;
+            }
+
+            .button-group {
+                gap: 12px;
+                margin-top: 28px;
+            }
+
+            .btn {
+                min-width: 130px;
+                padding: 12px 16px;
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 13px;
+                margin-bottom: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 15px;
+            }
+
+            .page-header {
+                margin-bottom: 30px;
+            }
+
+            .page-header h1 {
+                font-size: 18px;
+            }
+
+            .container {
+                border-radius: 12px;
+            }
+
+            .form-header {
+                padding: 20px 15px;
+            }
+
+            .form-header h2 {
+                font-size: 18px;
+            }
+
+            .form-header h2 i {
+                font-size: 20px;
+            }
+
+            .form-content {
+                padding: 20px 15px;
+            }
+
+            .form-section {
+                margin-bottom: 25px;
+            }
+
+            .form-group {
+                margin-bottom: 16px;
+            }
+
+            label {
+                font-size: 12px;
+                margin-bottom: 7px;
+            }
+
+            input[type=text],
+            input[type=file],
+            textarea {
+                padding: 11px 12px;
+                font-size: 13px;
+            }
+
+            .file-upload-label {
+                padding: 16px;
+                font-size: 13px;
+            }
+
+            .info-box {
+                padding: 12px;
+                font-size: 11px;
+                margin-top: 10px;
+            }
+
+            .info-box i {
+                font-size: 14px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 25px;
+            }
+
+            .btn {
+                width: 100%;
+                min-width: auto;
+                padding: 12px 16px;
+                font-size: 12px;
+            }
+
+            .section-title {
+                font-size: 12px;
+                margin-bottom: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1><i class="fas fa-university"></i> Add Bank Account</h1>
+        <p>Secure Bank Details for Scholarship & Fee Disbursement</p>
+    </div>
+
+    <!-- Main Form Container -->
+    <div class="container">
+        <!-- Form Header -->
+        <div class="form-header">
+            <h2><i class="fas fa-bank"></i> Bank Account Details</h2>
+            <p>Please provide your accurate bank information for transactions</p>
+        </div>
+
+        <!-- Form Content -->
+        <div class="form-content">
+            <form>
+                <!-- Account Details Section -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <i class="fas fa-credit-card"></i> Account Information
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountNo">
+                            <i class="fas fa-asterisk" style="color: #e74c3c; font-size: 8px;"></i> Account Number
+                        </label>
+                        <div class="input-group">
+                            <input type="text" id="accountNo" name="account_number"
+                                placeholder="Enter your 11-16 digit account number" required>
+                            <i class="fas fa-lock"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ifsc">
+                            <i class="fas fa-asterisk" style="color: #e74c3c; font-size: 8px;"></i> IFSC Code
+                        </label>
+                        <div class="input-group">
+                            <input type="text" id="ifsc" name="ifsc"
+                                placeholder="Enter 11-character IFSC code (e.g., SBIN0001234)" required>
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="accountName">
+                            <i class="fas fa-asterisk" style="color: #e74c3c; font-size: 8px;"></i> Name as per Bank
+                            Account
+                        </label>
+                        <div class="input-group">
+                            <input type="text" id="accountName" name="account_holder_name"
+                                placeholder="Enter name exactly as shown in your bank account" required>
+                            <i class="fas fa-user"></i>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Document Upload Section -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <i class="fas fa-file-upload"></i> Supporting Documents
+                    </div>
+
+                    <!-- Passbook Upload -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-asterisk" style="color: #e74c3c; font-size: 8px;"></i> Passbook/Bank
+                            Statement
+                        </label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="passbook" name="passbook" accept="image/*" required>
+                            <label for="passbook" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Click to upload Passbook (First Page)</span>
+                            </label>
+                        </div>
+                        <div class="info-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <strong>File Requirements:</strong> Images only (JPG, PNG) | Max 1 MB | Must clearly
+                                show bank name, IFSC, and account number
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chequebook Upload -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-asterisk" style="color: #e74c3c; font-size: 8px;"></i> Chequebook
+                            (Cancelled Cheque)
+                        </label>
+                        <div class="file-upload-wrapper">
+                            <input type="file" id="cheque" name="chequebook" accept="image/*" required>
+                            <label for="cheque" class="file-upload-label">
+                                <i class="fas fa-cloud-upload-alt"></i>
+                                <span>Click to upload Cancelled Cheque</span>
+                            </label>
+                        </div>
+                        <div class="info-box">
+                            <i class="fas fa-lightbulb"></i>
+                            <div>
+                                <strong>File Requirements:</strong> Images only (JPG, PNG) | Max 1 MB | Both sides
+                                clearly visible with account details
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button type="button" class="btn btn-primary" onclick="validateForm()">
+                        <i class="fas fa-check-circle"></i> Validate Account
+                    </button>
+                    <button type="submit" class="btn btn-secondary">
+                        <i class="fas fa-save"></i> Submit
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function validateForm() {
+            const accountNo = document.getElementById('accountNo').value;
+            const ifsc = document.getElementById('ifsc').value;
+            const accountName = document.getElementById('accountName').value;
+
+            if (!accountNo || !ifsc || !accountName) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Add loading state
+            const btn = event.target;
+            btn.classList.add('loading');
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Validating...';
+
+            // Simulate validation
+            setTimeout(() => {
+                alert('Account validated successfully!');
+                btn.classList.remove('loading');
+                btn.innerHTML = '<i class="fas fa-check-circle"></i> Validate Account';
+            }, 2000);
+        }
+
+        // File upload label click handling
+        document.querySelectorAll('input[type="file"]').forEach(input => {
+            input.addEventListener('change', function () {
+                const label = this.nextElementSibling;
+                if (this.files && this.files[0]) {
+                    label.innerHTML = `<i class="fas fa-file-check"></i> <span>${this.files[0].name}</span>`;
+                    label.style.borderColor = '#27ae60';
+                    label.style.color = '#27ae60';
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

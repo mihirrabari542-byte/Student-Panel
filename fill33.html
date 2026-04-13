@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Center the image and position the close button */
+        .imgcontainer {
+
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">Fill</button>
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+
+                <!DOCTYPE html>
+                <html>
+
+                <head>
+                    <meta name="viewport" content="width=device-width, initial-scale=1">
+                    <style>
+                        body {
+                            font-family: Arial, Helvetica, sans-serif;
+                        }
+
+                        * {
+                            box-sizing: border-box;
+                        }
+
+                        input[type=text],
+                        select,
+                        textarea {
+                            width: 100%;
+                            padding: 12px;
+                            border: 1px solid #ccc;
+                            border-radius: 4px;
+                            box-sizing: border-box;
+                            margin-top: 6px;
+                            margin-bottom: 16px;
+                            resize: vertical;
+                        }
+
+                        input[type=submit] {
+                            background-color: #04AA6D;
+                            color: white;
+                            padding: 12px 20px;
+                            border: none;
+                            border-radius: 4px;
+                            cursor: pointer;
+                        }
+
+                        input[type=submit]:hover {
+                            background-color: #45a049;
+                        }
+
+                        .container {
+                            border-radius: 5px;
+                            background-color: #f2f2f2;
+                            padding: 20px;
+                        }
+
+                        .btn {
+                            border: none;
+                            color: white;
+                            padding: 14px 28px;
+                            font-size: 16px;
+                            cursor: pointer;
+                        }
+
+                        .success {
+                            background-color: #04AA6D;
+                        }
+
+                        /* Green */
+                        .success:hover {
+                            background-color: #46a049;
+                        }
+
+                        .danger {
+                            background-color: #f44336;
+                        }
+
+                        /* Red */
+                        .danger:hover {
+                            background: #da190b;
+                        }
+                    </style>
+                </head>
+
+                <body>
+                    <br>
+                    <h3>
+                        <p style="color: Green;"> Generic | Other | Outgoing Student Feedback Form | Parul University (
+                            16-03-2026 To 31-07-2026)</p>
+                    </h3>
+
+
+                    <div class="container">
+                        <form action="/action_page.php">
+
+
+                            <h2>
+                                <p style="color: Green;">Feedback</p>
+                            </h2>
+
+                            <label for="country">1. Quality of programme to which you enrolled *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">2. Overall teaching-learning of programme curriculum *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">3. Programme has improved your technical expertise and practices
+                                *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">4. Evaluation system in programme *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">5. Infrastructure facility *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">6. Laboratory facility *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+
+                            <label for="country">7. Audio-Visual facility *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">8. Availability of qualified faculty *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">9. Ethics and values developed through the programme *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">10. Sports Facility *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">11. Medical Facility *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">12. Canteen Facility / Food Court *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">13. Transport Facility *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">14. Student support and welfare *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">15. Wash room and cleanliness *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">16. Photo copy/printing/Stationary facility *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">17. Boys/Girls common room *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">18. Facility for career development cell *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">19. Seminar room/Auditorium *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">20. Extracurricular / NSS / NCC activities *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">21. Support from department to do project at industry/internship
+                                *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">22. Co-operation from non teaching staff /Office staff /peon *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">23. Security service *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">24. Bank / ATM *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">25. Grievance Cell *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">26. Gym / Swimming pool *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">27. Events / Cultural facilities *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">28. Career counselling cell *</label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">29. International exchange *
+
+                            </label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">30. Vocational courses / Extra coaching classes *
+
+                            </label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">31. Training / Placement Cell *
+                            </label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">32. Entrepreneur Development Cell *
+                            </label>
+                            <select id="country" name="country">
+                                <option value="australia">Select Options</option>
+                                <option value="canada">Unsatisfied</option>
+                                <option value="usa">Average</option>
+                                <option value="usa">Satisfied</option>
+                                <option value="usa">Fully Satisfied</option>
+                            </select>
+                            <hr>
+
+                            <label for="country">33. Anti Ragging Committee *
+                                <select id="country" name="country">
+                                    <option value="australia">Select Options</option>
+                                    <option value="canada">Unsatisfied</option>
+                                    <option value="usa">Average</option>
+                                    <option value="usa">Satisfied</option>
+                                    <option value="usa">Fully Satisfied</option>
+                                </select>
+                                <hr>
+
+                                <label for="country">34. Women Grievance Cell *
+                                    <select id="country" name="country">
+                                        <option value="australia">Select Options</option>
+                                        <option value="canada">Unsatisfied</option>
+                                        <option value="usa">Average</option>
+                                        <option value="usa">Satisfied</option>
+                                        <option value="usa">Fully Satisfied</option>
+                                    </select>
+                                    <hr>
+
+                                    <label for="country">35. Internal Complaints Committee *
+                                        <select id="country" name="country">
+                                            <option value="australia">Select Options</option>
+                                            <option value="canada">Unsatisfied</option>
+                                            <option value="usa">Average</option>
+                                            <option value="usa">Satisfied</option>
+                                            <option value="usa">Fully Satisfied</option>
+                                        </select>
+                                        <hr>
+
+                                        <label for="country">36. Equal Opportunity Cell *
+                                            <select id="country" name="country">
+                                                <option value="australia">Select Options</option>
+                                                <option value="canada">Unsatisfied</option>
+                                                <option value="usa">Average</option>
+                                                <option value="usa">Satisfied</option>
+                                                <option value="usa">Fully Satisfied</option>
+                                            </select>
+                                            <hr>
+
+                                            <label for="country">37. Scholarship Cell *
+                                                <select id="country" name="country">
+                                                    <option value="australia">Select Options</option>
+                                                    <option value="canada">Unsatisfied</option>
+                                                    <option value="usa">Average</option>
+                                                    <option value="usa">Satisfied</option>
+                                                    <option value="usa">Fully Satisfied</option>
+                                                </select>
+
+                                                <button class="btn success">Save</button>
+                                                <button class="btn danger">cancel</button>
+
+
+
+                        </form>
+                    </div>
+
+                </body>
+
+                </html>
+            </div>
+
+</body>
+
+</html>

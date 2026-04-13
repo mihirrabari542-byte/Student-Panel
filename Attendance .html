@@ -1,0 +1,1687 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Attendance Management System</title>
+    <style>
+        /* ========== Global Styles ========== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* ========== Container ========== */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* ========== Header Section ========== */
+        .page-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .page-header h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+            font-weight: 700;
+        }
+
+        .page-header p {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        /* ========== Tab Navigation ========== */
+        .tab {
+            display: flex;
+            gap: 0;
+            border-bottom: 2px solid #ddd;
+            background-color: white;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            margin-bottom: 0;
+        }
+
+        .tab button {
+            background-color: transparent;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 16px 24px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #666;
+            transition: all 0.3s ease;
+            position: relative;
+            border-bottom: 3px solid transparent;
+            border-radius: 0;
+            flex: 1;
+            text-align: center;
+        }
+
+        .tab button:hover {
+            background-color: #f8f9fa;
+            color: #333;
+        }
+
+        .tab button.active {
+            background-color: white;
+            color: #667eea;
+            border-bottom-color: #667eea;
+        }
+
+        /* ========== Tab Content ========== */
+        .tabcontent {
+            display: none;
+            padding: 30px;
+            border: 1px solid #ddd;
+            border-top: none;
+            border-radius: 0 0 8px 8px;
+            background-color: white;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .tabcontent.active {
+            display: block;
+        }
+
+        /* ========== Statistics Section ========== */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            border: none;
+            color: white;
+            padding: 24px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 8px;
+            text-align: center;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Button Style Classes */
+        .btn {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .success {
+            background: linear-gradient(135deg, #04AA6D 0%, #039058 100%);
+        }
+
+        .success:hover {
+            background: linear-gradient(135deg, #039058 0%, #027a44 100%);
+        }
+
+        .info {
+            background: linear-gradient(135deg, #2196F3 0%, #0b7dda 100%);
+        }
+
+        .info:hover {
+            background: linear-gradient(135deg, #0b7dda 0%, #0056b3 100%);
+        }
+
+        .warning {
+            background: linear-gradient(135deg, #ff9800 0%, #e68a00 100%);
+        }
+
+        .warning:hover {
+            background: linear-gradient(135deg, #e68a00 0%, #cc7000 100%);
+        }
+
+        .danger {
+            background: linear-gradient(135deg, #f44336 0%, #da190b 100%);
+        }
+
+        .danger:hover {
+            background: linear-gradient(135deg, #da190b 0%, #ba1608 100%);
+        }
+
+        /* ========== Table Styles ========== */
+        .table-wrapper {
+            overflow-x: auto;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            border: none;
+            font-size: 15px;
+        }
+
+        #myTable th {
+            text-align: left;
+            padding: 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+            white-space: nowrap;
+        }
+
+        #myTable td {
+            text-align: left;
+            padding: 14px 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        #myTable tr:hover {
+            background-color: #f8f9fa;
+        }
+
+        #myTable tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* ========== Width Classes ========== */
+        .w60 {
+            width: 60%;
+        }
+
+        .w40 {
+            width: 40%;
+        }
+
+        /* ========== Color Classes ========== */
+        .text-blue {
+            color: #2196F3;
+            font-weight: 600;
+        }
+
+        .text-red {
+            color: #f44336;
+            font-weight: 600;
+        }
+
+        .text-green {
+            color: #04AA6D;
+            font-weight: 600;
+        }
+
+        /* ========== Modal Styles ========== */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .modal:target {
+            display: block;
+        }
+
+        .modal-overlay {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 10% auto;
+            padding: 0;
+            border: none;
+            border-radius: 12px;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            color: #999;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            z-index: 1;
+        }
+
+        .close:hover {
+            color: #f44336;
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 12px 12px 0 0;
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            font-size: 20px;
+            font-weight: 600;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .modal table th {
+            text-align: left;
+            padding: 14px 16px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom: none;
+            font-weight: 600;
+        }
+
+        .modal table td {
+            text-align: left;
+            padding: 12px 16px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .modal table tr:hover {
+            background-color: #f9f9f9;
+        }
+
+        .modal table tr:nth-child(even) {
+            background-color: #f5f5f5;
+        }
+
+        .modal table tr:nth-child(even):hover {
+            background-color: #efefef;
+        }
+
+        /* Optional: keep the modal page from jumping too much */
+        #close {
+            position: absolute;
+            top: 0;
+        }
+
+        /* ========== Status Buttons ========== */
+        .btn-present {
+            background: linear-gradient(135deg, #8fce00 0%, #76a500 100%);
+            border: none;
+            padding: 8px 16px;
+            margin: 4px 2px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-present:hover {
+            background: linear-gradient(135deg, #76a500 0%, #5d8400 100%);
+            transform: scale(1.05);
+        }
+
+        .btn-absent {
+            background: linear-gradient(135deg, #ff4444 0%, #cc0000 100%);
+            border: none;
+            padding: 8px 16px;
+            margin: 4px 2px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-absent:hover {
+            background: linear-gradient(135deg, #cc0000 0%, #990000 100%);
+            transform: scale(1.05);
+        }
+
+        /* ========== No Record Message ========== */
+        .no-record {
+            background: linear-gradient(135deg, #f8d7da 0%, #f5c6cb 100%);
+            border: 1px solid #f5c6cb;
+            color: #721c24;
+            padding: 24px;
+            border-radius: 8px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            min-height: 80px;
+            font-weight: 500;
+            font-size: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .no-record i {
+            font-size: 28px;
+        }
+
+        /* ========== Responsive Design ========== */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .page-header {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+
+            .page-header h1 {
+                font-size: 22px;
+            }
+
+            .tab {
+                flex-wrap: wrap;
+            }
+
+            .tab button {
+                padding: 12px 16px;
+                font-size: 14px;
+                flex: auto;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+
+            .stat-card {
+                padding: 16px 12px;
+                font-size: 14px;
+            }
+
+            #myTable th,
+            #myTable td {
+                padding: 12px;
+                font-size: 14px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 30% auto;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .modal-header {
+                padding: 15px 20px;
+            }
+
+            .modal-header h3 {
+                font-size: 18px;
+            }
+
+            .tabcontent {
+                padding: 20px;
+            }
+
+            .close {
+                right: 12px;
+                top: 10px;
+                font-size: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 10px;
+            }
+
+            .stat-card {
+                padding: 14px 12px;
+                font-size: 13px;
+            }
+
+            #myTable {
+                font-size: 12px;
+            }
+
+            #myTable th,
+            #myTable td {
+                padding: 8px;
+            }
+
+            .tab {
+                flex-direction: column;
+            }
+
+            .tab button {
+                padding: 12px;
+                font-size: 12px;
+                flex: 1;
+            }
+
+            .page-header {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .page-header h1 {
+                font-size: 18px;
+            }
+
+            .page-header p {
+                font-size: 12px;
+            }
+
+            .close {
+                right: 10px;
+                top: 8px;
+                font-size: 24px;
+            }
+
+            .modal table {
+                font-size: 13px;
+            }
+
+            .modal table th,
+            .modal table td {
+                padding: 10px;
+            }
+
+            .tabcontent {
+                padding: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="page-header">
+            <h1>Attendance Management System</h1>
+            <p>Track and manage your academic attendance</p>
+        </div>
+
+        <div class="tab">
+            <button class="tablinks active" onclick="openCity(event, 'London')">Attendance Summary</button>
+            <button class="tablinks" onclick="openCity(event, 'Paris')">Absent Days</button>
+            <button class="tablinks" onclick="openCity(event, 'Tokyo')">Month View</button>
+        </div>
+
+        <div id="London" class="tabcontent active">
+            <div class="stats-grid">
+                <button class="stat-card success"><i class="fas fa-calendar-alt"></i><br/>225 Total Slots</button>
+                <button class="stat-card info"><i class="fas fa-check-circle"></i><br/>146 Present Slots</button>
+                <button class="stat-card warning"><i class="fas fa-percentage"></i><br/>64.89 Present %</button>
+                <button class="stat-card danger"><i class="fas fa-times-circle"></i><br/>79 Absent Slots</button>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="myTable">
+                    <tr class="header">
+                        <th>Sr</th>
+                        <th>Slot Type</th>
+                        <th>Subject</th>
+                        <th>Conducted</th>
+                        <th>Present</th>
+                        <th>Absent</th>
+                        <th>Attendance %</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Lecture</td>
+                        <td>303105362 -Big Data Analytics</td>
+                        <td>37</td>
+                        <td>26</td>
+                        <td>11</td>
+                        <td><span class="text-red">70.27%</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Lab</td>
+                        <td>303105361 -Big Data Analytics</td>
+                        <td>7</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td><span class="text-green">71.43%</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Lecture</td>
+                        <td>303105375 -Information and Network Security</td>
+                        <td>37</td>
+                        <td>26</td>
+                        <td>11</td>
+                        <td><span class="text-red">70.27%</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Lab</td>
+                        <td>303105376 -Information and Network Security</td>
+                        <td>14</td>
+                        <td>4</td>
+                        <td>10</td>
+                        <td><span class="text-red">28.57%</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Lecture</td>
+                        <td>303105383-Blockchain -</td>
+                        <td>37</td>
+                        <td>27</td>
+                        <td>10</td>
+                        <td><span class="text-green">72.97%</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Lab</td>
+                        <td>303105384-Blockchain -</td>
+                        <td>10</td>
+                        <td>4</td>
+                        <td>6</td>
+                        <td><span class="text-red">40.00%</span></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Lecture</td>
+                        <td>303105383-Blockchain -</td>
+                        <td>37</td>
+                        <td>27</td>
+                        <td>10</td>
+                        <td><span class="text-green">72.97%</span></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Lecture</td>
+                        <td>303108443-Applied Machine Learning </td>
+                        <td>43</td>
+                        <td>29</td>
+                        <td>14</td>
+                        <td><span class="text-red">67.44%</span></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Lab</td>
+                        <td>303108444-Applied Machine Learning Laboratory</td>
+                        <td>43</td>
+                        <td>29</td>
+                        <td>14</td>
+                        <td><span class="text-red">67.44%</span></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>Other</td>
+                        <td>VAC</td>
+                        <td>8</td>
+                        <td>6</td>
+                        <td>2</td>
+                        <td><span class="text-red">64.89%</span></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+
+        <div id="Paris" class="tabcontent">
+            <div id="close"></div>
+
+            <div class="stats-grid">
+                <button class="stat-card warning"><i class="fas fa-clock"></i><br/>15<br>Partial Absent Days</button>
+                <button class="stat-card danger"><i class="fas fa-times-circle"></i><br/>14<br>Full Absent Days</button>
+                <button class="stat-card danger"><i class="fas fa-ban"></i><br/>79<br>Total Absent Slots</button>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="myTable">
+                    <tr class="header">
+                        <th class="w60">Sr.</th>
+                        <th class="w40">Attendance Date</th>
+                        <th class="w60"><span class="text-blue">Conducted</span></th>
+                        <th class="w60">Present</th>
+                        <th class="w60"><span class="text-red">Absent</span></th>
+                        <th class="w60">Action</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>11-10-2025 Saturday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">4</span></td>
+                        <td><a href="#d11-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>12-10-2025 Friday</td>
+                        <td><span class="text-blue">3</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">3</span></td>
+                        <td><a href="#d12-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>07-10-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>2</td>
+                        <td><span class="text-red">3</span></td>
+                        <td><a href="#d7-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>06-10-2025 Monday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">4</span></td>
+                        <td><a href="#d6-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td>03-10-2025 Friday</td>
+                        <td><span class="text-blue">3</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">3</span></td>
+                        <td><a href="#d3-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>6.</td>
+                        <td>30-09-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>1</td>
+                        <td><span class="text-red">4</span></td>
+                        <td><a href="#d30-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>7.</td>
+                        <td>29-09-2025 Monday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>1</td>
+                        <td><span class="text-red">3</span></td>
+                        <td><a href="#d29-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>8.</td>
+                        <td>27-09-2025 Saturday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>3</td>
+                        <td><span class="text-red">1</span></td>
+                        <td><a href="#d27-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>9.</td>
+                        <td>22-09-2025 Mondar</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">4</span></td>
+                        <td><a href="#d22-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>16-09-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">5</span></td>
+                        <td><a href="#d11-10-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>11.</td>
+                        <td>15-09-2025 monday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>2</td>
+                        <td><span class="text-red">2</span></td>
+                        <td><a href="#d15-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>12.</td>
+                        <td>13-09-2025 Saturday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>3</td>
+                        <td><span class="text-red">1</span></td>
+                        <td><a href="#d12-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>13.</td>
+                        <td>09-09-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>4</td>
+                        <td><span class="text-red">1</span></td>
+                        <td><a href="#d09-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>14.</td>
+                        <td>05-09-2025 Friday</td>
+                        <td><span class="text-blue">2</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">2</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>15.</td>
+                        <td>02-09-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>4</td>
+                        <td><span class="text-red">1</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>16.</td>
+                        <td>29-08-2025 Friday</td>
+                        <td><span class="text-blue">3</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">3</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>17.</td>
+                        <td>26-08-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>4</td>
+                        <td><span class="text-red">3</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>18.</td>
+                        <td>19-08-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>4</td>
+                        <td><span class="text-red">1</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>19.</td>
+                        <td>12-08-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>2</td>
+                        <td><span class="text-red">3</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>20.</td>
+                        <td>11-08-2025 Monday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>1</td>
+                        <td><span class="text-red">3</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>21.</td>
+                        <td>29-07-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">5</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>22.</td>
+                        <td>28-07-2025 Monday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>2</td>
+                        <td><span class="text-red">2</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>23.</td>
+                        <td>26-07-2025 Saturday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>1</td>
+                        <td><span class="text-red">4</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>24.</td>
+                        <td>25-07-2025 Friday</td>
+                        <td><span class="text-blue">2</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">2</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>25.</td>
+                        <td>11-07-2025 Friday</td>
+                        <td><span class="text-blue">2</span></td>
+                        <td>1</td>
+                        <td><span class="text-red">1</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>26.</td>
+                        <td>27-06-2025 Friday</td>
+                        <td><span class="text-blue">2</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">2</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>27.</td>
+                        <td>19-06-2025 Thursday</td>
+                        <td><span class="text-blue">2</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">2</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>28.</td>
+                        <td>10-06-2025 Tuesday</td>
+                        <td><span class="text-blue">5</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">5</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                    <tr>
+                        <td>29.</td>
+                        <td>09-06-2025 Monday</td>
+                        <td><span class="text-blue">4</span></td>
+                        <td>0</td>
+                        <td><span class="text-red">4</span></td>
+                        <td><a href="#d13-09-2025"><button onclick="document.getElementById('id01').style.display='block'" style="width:auto; padding: 8px 12px;"><i class="fas fa-file"></i></button></a></td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Modal: 11-10-2025 1 -->
+            <div id="d11-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 11-10-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20PM-1:15PM</td>
+                                <td>303105375</td>
+                                <td>Mr. RONI DAS</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>1:15PM-2:10PM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 12-10-2025 -->
+            <div id="d12-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 12-10-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303105384</td>
+                                <td>Ms. BHIMAJIYANI SAPNA VIJAYBHAI</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>2:30PM-3:25PM</td>
+                                <td>303105375</td>
+                                <td>Mr. RONI DAS</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>3:25 PM - 4:20 PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 7-10-2025 -->
+            <div id="d7-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 07-10-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105375</td>
+                                <td>Mr. RONI DAS</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20PM-1:15PM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>1:15PM-2:10PM</td>
+                                <td>303105453</td>
+                                <td>Mr. BHUPENDRA SUBHASHCHANDRA RAMANI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>2:30 PM - 4:20 PM</td>
+                                <td>303105376</td>
+                                <td>Mr. RONI DAS</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 6-10-2025 -->
+            <div id="d6-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 06-10-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20PM-1:15PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>2:30PM-4:20PM</td>
+                                <td>303108444</td>
+                                <td>Dr. PRAGYAN NANDA</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 3-10-2025 -->
+            <div id="d3-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 03-10-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303105384</td>
+                                <td>Ms. BHIMAJIYANI SAPNA VIJAYBHAI</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>2:30PM-3:25PM</td>
+                                <td>303105375</td>
+                                <td>Mr. RONI DAS</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>3:25PM-4:20PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 30-09-2025 -->
+            <div id="d30-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 30-09-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture </td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20 AM</td>
+                                <td>303105375</td>
+                                <td>Mr. RONI DAS</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20PM-1:15PM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>1:15PM-2:10PM</td>
+                                <td>303105453</td>
+                                <td>Mr. BHUPENDRA SUBHASHCHANDRA RAMANI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>5.</td>
+                                <td>2:30PM-4:20PM</td>
+                                <td>303105376</td>
+                                <td>Mr. RONI DAS</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 29-09-2025 -->
+            <div id="d29-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 29-09-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>2:30PM-3:25PM</td>
+                                <td>303105375</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20 PM - 1:15 PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>2:30 PM - 4:20 PM</td>
+                                <td>303108444</td>
+                                <td>Dr. PRAGYAN NANDA</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 27-09-2025 -->
+            <div id="d27-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 27-09-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20 PM - 1:15 PM</td>
+                                <td>303105375</td>
+                                <td>Mr. RONI DAS</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>1:15PM-2:10PM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 22-09-2025 -->
+            <div id="d22-10-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 22-09-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20 PM - 1:15 PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>1:15PM-2:10PM</td>
+                                <td>303108444</td>
+                                <td>Dr. PRAGYAN NANDA</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 15-09-2025 -->
+            <div id="d15-09-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 15-09-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20 PM - 1:15 PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>2:30 PM - 4:20 PM</td>
+                                <td>303108444</td>
+                                <td>Dr. PRAGYAN NANDA</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 12-09-2025 -->
+            <div id="d12-09-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 12-09-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20 PM - 1:15 PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>2:30 PM - 4:20 PM</td>
+                                <td>303108444</td>
+                                <td>Dr. PRAGYAN NANDA</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 09-09-2025 -->
+            <div id="d09-09-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 09-09-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20 PM - 1:15 PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>2:30 PM - 4:20 PM</td>
+                                <td>303108444</td>
+                                <td>Dr. PRAGYAN NANDA</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal: 13-09-2025 -->
+            <div id="d13-09-2025" class="modal">
+                <a class="modal-overlay" href="#close" aria-label="Close"></a>
+                <div class="modal-content">
+                    <a class="close" href="#close" title="Close">&times;</a>
+                    <div class="modal-header">
+                        <h3>Attendance Detail of 13-09-2025</h3>
+                    </div>
+                    <div class="modal-body">
+                        <table>
+                            <tr>
+                                <th>Sr.</th>
+                                <th>Time</th>
+                                <th>Subject</th>
+                                <th>Staff</th>
+                                <th>Slot Type</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>1.</td>
+                                <td>9:30AM-10:25AM</td>
+                                <td>303108443</td>
+                                <td>Mr. RAUNAK RAJ</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>2.</td>
+                                <td>10:25AM-11:20AM</td>
+                                <td>303105383</td>
+                                <td>Mr. KHAN ZIYAM</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-present">Present</button></td>
+                            </tr>
+                            <tr>
+                                <td>3.</td>
+                                <td>12:20 PM - 1:15 PM</td>
+                                <td>303105361</td>
+                                <td>Ms. SONALI ROOPCHAND KORI</td>
+                                <td>Lecture</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                            <tr>
+                                <td>4.</td>
+                                <td>2:30 PM - 4:20 PM</td>
+                                <td>303108444</td>
+                                <td>Dr. PRAGYAN NANDA</td>
+                                <td>LAB</td>
+                                <td><button type="button" class="btn-absent">Absent</button></td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div id="Tokyo" class="tabcontent">
+            <div class="no-record">
+                <i class="fas fa-exclamation-circle"></i>
+                Attendance for selected date hasn't been filled yet.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            document.getElementById(cityName).classList.add("active");
+            evt.currentTarget.className += " active";
+        }
+    </script>
+
+</body>
+
+</html>

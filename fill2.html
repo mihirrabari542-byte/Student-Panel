@@ -1,0 +1,1557 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        /* Full-width input fields */
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* Extra styles for the cancel button */
+        .cancelbtn {
+            width: auto;
+            padding: 10px 18px;
+            background-color: #f44336;
+        }
+
+        /* Center the image and position the close button */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+        img.avatar {
+            width: 40%;
+            border-radius: 50%;
+        }
+
+        .container {
+            padding: 16px;
+        }
+
+        span.psw {
+            float: right;
+            padding-top: 16px;
+        }
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: red;
+            cursor: pointer;
+        }
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        @keyframes animatezoom {
+            from {
+                transform: scale(0)
+            }
+
+            to {
+                transform: scale(1)
+            }
+        }
+
+        /* Change styles for span and cancel button on extra small screens */
+        @media screen and (max-width: 300px) {
+            span.psw {
+                display: block;
+                float: none;
+            }
+
+            .cancelbtn {
+                width: 100%;
+            }
+        }
+
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"><style>.btn {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .success {
+            background-color: #04AA6D;
+        }
+
+        /* Green */
+        .success:hover {
+            background-color: #46a049;
+        }
+
+        .danger {
+            background-color: #f44336;
+        }
+
+        /* Red */
+        .danger:hover {
+            background: #da190b;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;">FILL </button>
+
+    <div id="id01" class="modal">
+
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+
+            </div>
+
+
+
+
+
+
+
+
+            <!DOCTYPE html>
+            <html>
+
+            <head>
+
+                <link rel="stylesheet"
+                    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+                <style>
+                    input[type=text] {
+                        width: 100%;
+                        margin-bottom: 20px;
+                        padding: 12px;
+                        border: 1px solid #ccc;
+                        border-radius: 3px;
+                    }
+
+                    label {
+                        margin-bottom: 10px;
+                        display: block;
+                    }
+
+
+
+
+
+
+                    body {
+                        font-family: Arial;
+                    }
+
+                    input[type=text],
+                    select {
+                        width: 100%;
+                        padding: 12px 20px;
+                        margin: 8px 0;
+                        display: block;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        box-sizing: border-box;
+                    }
+
+
+
+
+
+                    /* The container */
+                    .container {
+                        display: block;
+                        position: relative;
+                        padding-left: 35px;
+                        margin-bottom: 12px;
+                        cursor: pointer;
+                        font-size: 15px;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                    }
+
+                    /* Hide the browser's default radio button */
+                    .container input {
+                        position: absolute;
+                        opacity: 0;
+                        cursor: pointer;
+                    }
+
+                    /* Create a custom radio button */
+                    .checkmark {
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        height: 22px;
+                        width: 22px;
+                        background-color: #eee;
+                        border-radius: 50%;
+                    }
+
+                    /* On mouse-over, add a grey background color */
+                    .container:hover input~.checkmark {
+                        background-color: #ccc;
+                    }
+
+                    /* When the radio button is checked, add a blue background */
+                    .container input:checked~.checkmark {
+                        background-color: #2196F3;
+                    }
+
+                    /* Create the indicator (the dot/circle - hidden when not checked) */
+                    .checkmark:after {
+                        content: "";
+                        position: absolute;
+                        display: none;
+                    }
+
+                    /* Show the indicator (dot/circle) when checked */
+                    .container input:checked~.checkmark:after {
+                        display: block;
+                    }
+
+
+                    /* Style the indicator (dot/circle) */
+                    .container .checkmark:after {
+                        top: 9px;
+                        left: 9px;
+                        width: 8px;
+                        height: 8px;
+                        border-radius: 50%;
+                        background: white;
+                    }
+
+
+                    input[type=text],
+                    select {
+                        width: 100%;
+                        padding: 12px 20px;
+                        margin: 8px 0;
+                        display: block;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        box-sizing: border-box;
+                    }
+
+                    div.container {
+                        border-radius: 5px;
+                        background-color: #f2f2f2;
+                        padding: 20px;
+                    }
+                </style>
+
+            <body>
+
+                <h1>1.Library</h1>
+                <P> 1.Availability of Books in subjects of your branch*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 2.Cataloging and Arranement of books in library.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P>3.Availability of Reading space.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 4. Overall system of issuing books.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 5. Coopertion and heiging hand extended by library staff.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 6.Photocopying facilities in library.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 7. Library timinys.*</p>
+
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 8.Library facillities for seif-study projects and seminar.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2> 2.Internet</h2>
+
+                <P>9. Internet accessibility.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 10. Interneet speed.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2> 3.Office</h2>
+
+                <P> 11. Cooperation and benavior from college office staff.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 12. Cooperation and beavior of department office staff. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 13. Disperson of scuolarships.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 14. Over all level of service proided in the offices - admission section.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 15. Overall level of service proided in the offices-account sectior.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 16. Overall level of service provided in the offices-examination section.</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p>17. Overall level of service providrd in the offices-dean office.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2>4.Examinaation section.</h2>
+
+                <p>18. Distribution of marks cards.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <P> 19. Clarifications for quarries.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2>5.Classroom and labs.</h2>
+
+
+                <p> 20. Classroom of classrooms.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 21. cleanliness of classrooms.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 22. Working conditions of equipments in labs. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 23. Providing chemicais/specimens/software/nardware in labs.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 24.Safefy measures in labs. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+
+                <h2>6. Trainig and placement cell/parul innovation and entrepreurship research centre/centre for
+                    intenational
+                    relations and research/competitive examination cell/technical events cell/alumni relation
+                    cell/social
+                    responsive cell/cultural event cell.</h2>
+
+
+                <p> 25. Conducting pre-placement training. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 26.Career guidance activities. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+
+                <p> 27. Guidance for higner studies. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">//
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 28.Overall support and guidance for placements. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 29. Adeauall support and guidance for placements. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 30. support for startups in terms of provlding sufficional exposure. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+
+                <p> 31. awareness session on opportunities for international exposure. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 32.Assistanal from the internationat cell during enrollment in any international program. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 33. Are cultural/technical events promoted within the institution ? *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+
+                <p> 34.Are aware the activities organize by social responsive CELL/NSS. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2>7. Sports</h2>
+
+                <p> 35. Quality level of student activity center. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 36. Infrastructure facilites for indoor and outdoor sports. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 37.coaching facilites for sparts. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 38. Organization of inter departmental and inter-institute level events. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2>8. Drinking water and refreshing rooms </h2>
+
+                <p> 39.availability and conditions of toilets.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 40. Drinking water facility. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2>9. Canteen</h2>
+
+                <p> 41. cleanliness in canteen.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 42.Quality of foods.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2>10. Other</h2>
+
+                <p> 43.Parking facility.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 44.Reprographic facility.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 45. health care facility.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 46. Availability of necessary stationary in campus.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2>11. Hostel</h2>
+
+                <p> 47.Overall facilies in hostel based on administration.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 48. Overall facilities in hostel based on amdience in room.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 49. Overall facilities in hostel based on food.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 50. Overall facilies in hostel based on dining hall.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 51. Overall facilities in hostel based on drinking water. *</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 52. Overall facilies in hostel based on toilets & bathrooms.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <p> 53. Overall facilites in hostel based on recreation facilites.*</p>
+                <label class="container">Excellent
+                    <input type="radio" checked="checked" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Very Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Good
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+                <label class="container">Below Average
+                    <input type="radio" name="radio">
+                    <span class="checkmark"></span>
+                </label>
+
+                <h2>12. Other 1</h2>
+
+
+
+
+                <label for="expmonth"> 54.Would you recommend your college to other based on the facilites ?</label>
+                <input type="text" id="expmonth" name="expmonth" placeholder="Select opticns">
+
+
+                <label for="expmonth">55. Any other valid suggsetions.</label>
+                <input type="text" id="expmonth" name="expmonth" placeholder="Enter description">
+
+
+
+                <button class="btn success">Save</button>
+                <button class="btn danger">Cancel</button>
+
+
+
+
+
+            </body>
+
+            </html>

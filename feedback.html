@@ -1,0 +1,1234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Feedback - Parul University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        /* Container */
+        .container-main {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Header */
+        .page-header {
+            background: white;
+            border-radius: 12px;
+            padding: 40px;
+            margin-bottom: 35px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: 42px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .page-title i {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-size: 48px;
+        }
+
+        .page-subtitle {
+            color: #667eea;
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        /* Info Banner */
+        .info-banner {
+            background: white;
+            border-left: 5px solid #667eea;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .info-banner i {
+            font-size: 24px;
+            color: #667eea;
+            flex-shrink: 0;
+        }
+
+        .info-banner-text {
+            color: #555;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        /* Feedback Table */
+        #myTable {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        #myTable thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        #myTable th {
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 600;
+            font-size: 14px;
+            white-space: nowrap;
+        }
+
+        #myTable td {
+            padding: 18px;
+            border-bottom: 1px solid #ecf0f1;
+            color: #555;
+            font-size: 14px;
+        }
+
+        #myTable tbody tr {
+            transition: all 0.3s ease;
+        }
+
+        #myTable tbody tr:hover {
+            background: rgba(102, 126, 234, 0.08);
+            transform: translateX(5px);
+        }
+
+        #myTable tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        /* Table Buttons */
+        .btn-table {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .btn-table:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow-y: auto;
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+
+        .modal:target {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .modal-overlay {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: transparent;
+            text-decoration: none;
+        }
+
+        .modal-content {
+            background: white;
+            margin: 40px auto;
+            border-radius: 16px;
+            width: 90%;
+            max-width: 900px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.4s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 25px;
+            border-radius: 16px 16px 0 0;
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 20px;
+            color: white;
+            font-size: 32px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: scale(1.2);
+        }
+
+        .modal-title {
+            color: white;
+            font-size: 24px;
+            font-weight: 700;
+            margin: 0;
+        }
+
+        .modal-body {
+            padding: 35px;
+        }
+
+        /* Form Styles */
+        .form-container {
+            background: white;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #667eea;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .form-group-title i {
+            font-size: 22px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 12px;
+            font-weight: 600;
+            color: #333;
+            font-size: 14px;
+        }
+
+        select,
+        textarea,
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #ecf0f1;
+            border-radius: 8px;
+            font-size: 14px;
+            font-family: inherit;
+            transition: all 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        select:focus,
+        textarea:focus,
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus {
+            outline: none;
+            border-color: #667eea;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        /* Radio Buttons */
+        .radio-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .radio-item input[type="radio"] {
+            width: auto;
+            margin: 0;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .radio-item label {
+            margin: 0;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        /* Buttons */
+        .btn-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+            padding-top: 25px;
+            border-top: 1px solid #ecf0f1;
+        }
+
+        .btn {
+            flex: 1;
+            border: none;
+            padding: 14px 24px;
+            font-size: 15px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-success {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-success:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-danger {
+            background: #f5f5f5;
+            color: #667eea;
+            border: 2px solid #ecf0f1;
+        }
+
+        .btn-danger:hover {
+            background: #ecf0f1;
+            border-color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+
+            .page-header {
+                padding: 25px;
+                margin-bottom: 25px;
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .page-title i {
+                font-size: 32px;
+            }
+
+            #myTable th,
+            #myTable td {
+                padding: 12px 8px;
+                font-size: 12px;
+            }
+
+            .modal-content {
+                width: 95%;
+                margin: 30px auto;
+            }
+
+            .modal-body {
+                padding: 20px;
+            }
+
+            .form-group-title {
+                font-size: 16px;
+            }
+
+            label {
+                font-size: 13px;
+            }
+
+            select,
+            textarea,
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"] {
+                padding: 12px 12px;
+                font-size: 13px;
+            }
+
+            .radio-group {
+                gap: 10px;
+            }
+
+            .radio-item {
+                min-width: 150px;
+                flex: 1;
+            }
+
+            .btn-group {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .page-title {
+                font-size: 22px;
+            }
+
+            .page-title i {
+                font-size: 28px;
+            }
+
+            #myTable th,
+            #myTable td {
+                padding: 10px 6px;
+                font-size: 11px;
+            }
+
+            .modal-content {
+                width: 98%;
+                margin: 15px auto;
+            }
+
+            .modal-header {
+                padding: 15px;
+                border-radius: 12px 12px 0 0;
+            }
+
+            .modal-title {
+                font-size: 18px;
+            }
+
+            .close {
+                right: 15px;
+                top: 12px;
+                font-size: 24px;
+            }
+
+            .modal-body {
+                padding: 15px;
+            }
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+            .radio-item {
+                min-width: 130px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Main Container -->
+    <div class="container-main">
+
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">
+                <i class="fas fa-star"></i> Student Feedback Portal
+            </h1>
+            <p class="page-subtitle">Share your valuable feedback to help us improve</p>
+        </div>
+
+        <!-- Info Banner -->
+        <div class="info-banner">
+            <i class="fas fa-info-circle"></i>
+            <div class="info-banner-text">
+                <strong>Your feedback is important to us!</strong> Please take time to share your thoughts and
+                suggestions about university facilities and services.
+            </div>
+        </div>
+
+        <!-- Feedback Table -->
+        <table id="myTable">
+            <thead>
+                <tr>
+                    <th style="width: 8%">Sr.</th>
+                    <th style="width: 50%">Feedback Form</th>
+                    <th style="width: 15%">Last Date</th>
+                    <th style="width: 15%">Filled Date</th>
+                    <th style="width: 12%">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1.</td>
+                    <td><i class="fas fa-file-alt"></i> Generic | Other | Outgoing Student Feedback Form | Parul
+                        University ( 16-03-2026 To 31-07-2026)</td>
+                    <td>31-07-2026</td>
+                    <td>-</td>
+                    <td>
+                        <a href="#d11-10-2025" style="text-decoration: none;">
+                            <button class="btn-table" onclick="document.getElementById('id01').style.display='block'">
+                                <i class="fas fa-file-pdf"></i> Fill Form
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2.</td>
+                    <td><i class="fas fa-file-alt"></i> 2025-26-Even (active) | Generic| Other |Student Feedback on
+                        Facilities | parul University(24-11-2025 To 30-03-2026)</td>
+                    <td>30-03-2026</td>
+                    <td>-</td>
+                    <td>
+                        <a href="#d12-10-2025" style="text-decoration: none;">
+                            <button class="btn-table" onclick="document.getElementById('id02').style.display='block'">
+                                <i class="fas fa-file-pdf"></i> Fill Form
+                            </button>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div id="close"></div>
+
+    <!-- Modal 1: Generic Feedback Form -->
+    <div id="d11-10-2025" class="modal">
+        <a class="modal-overlay" href="#close" aria-label="Close"></a>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-pen-fancy"></i> Outgoing Student Feedback Form
+                </h2>
+                <a class="close" href="#close" title="Close">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="/action_page.php">
+
+                        <!-- Feedback Section -->
+                        <div class="form-group">
+                            <h3 class="form-group-title">
+                                <i class="fas fa-lightbulb"></i> General Feedback
+                            </h3>
+                        </div>
+                        <div class="form-group">
+                            <label>1. Quality of programme to which you enrolled *</label>
+                            <select name="q1">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>2. Overall teaching-learning of programme curriculum *</label>
+                            <select name="q2">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>3. Programme has improved your technical expertise and practices *</label>
+                            <select name="q3">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>4. Evaluation system in programme *</label>
+                            <select name="q4">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>5. Infrastructure facility *</label>
+                            <select name="q5">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>6. Laboratory facility *</label>
+                            <select name="q6">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>7. Audio-Visual facility *</label>
+                            <select name="q7">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>8. Availability of qualified faculty *</label>
+                            <select name="q8">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>9. Ethics and values developed through the programme *</label>
+                            <select name="q9">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>10. Sports Facility *</label>
+                            <select name="q10">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 class="form-group-title">
+                                <i class="fas fa-building"></i> Campus Facilities
+                            </h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label>11. Medical Facility *</label>
+                            <select name="q11">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>12. Canteen Facility / Food Court *</label>
+                            <select name="q12">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>13. Transport Facility *</label>
+                            <select name="q13">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>14. Student support and welfare *</label>
+                            <select name="q14">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>15. Wash room and cleanliness *</label>
+                            <select name="q15">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>16. Photo copy/printing/Stationary facility *</label>
+                            <select name="q16">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>17. Boys/Girls common room *</label>
+                            <select name="q17">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 class="form-group-title">
+                                <i class="fas fa-graduation-cap"></i> Academic Support
+                            </h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label>18. Facility for career development cell *</label>
+                            <select name="q18">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>19. Seminar room/Auditorium *</label>
+                            <select name="q19">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>20. Extracurricular / NSS / NCC activities *</label>
+                            <select name="q20">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label>21. Support from department to do project at industry/internship *</label>
+                            <select name="q21">
+                                <option value="">Select Options</option>
+                                <option value="unsatisfied">Unsatisfied</option>
+                                <option value="average">Average</option>
+                                <option value="satisfied">Satisfied</option>
+                                <option value="fully">Fully Satisfied</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 class="form-group-title">
+                                <i class="fas fa-comments"></i> Additional Comments
+                            </h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Comments / Suggestions:</label>
+                            <textarea name="comments"
+                                placeholder="Please share your feedback or suggestions..."></textarea>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-paper-plane"></i> Submit Feedback
+                            </button>
+                            <button type="reset" class="btn btn-danger">
+                                <i class="fas fa-times"></i> Clear
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Facilities Feedback Form -->
+    <div id="d12-10-2025" class="modal">
+        <a class="modal-overlay" href="#close" aria-label="Close"></a>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    <i class="fas fa-star"></i> Student Feedback on Facilities
+                </h2>
+                <a class="close" href="#close" title="Close">
+                    <i class="fas fa-times"></i>
+                </a>
+            </div>
+            <div class="modal-body">
+                <div class="form-container">
+                    <form action="/action_page.php">
+
+                        <div class="form-group">
+                            <h3 class="form-group-title">
+                                <i class="fas fa-books"></i> Library Services
+                            </h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label>1. Availability of Books in subjects of your branch *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q1" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q1" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q1" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q1" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q1" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>2. Cataloging and Arrangement of books in library *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q2" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q2" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q2" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q2" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q2" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>3. Availability of Reading space *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q3" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q3" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q3" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q3" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q3" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>4. Overall system of issuing books *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q4" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q4" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q4" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q4" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q4" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>5. Cooperation and helping hand extended by library staff *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q5" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q5" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q5" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q5" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q5" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>6. Photocopying facilities in library *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q6" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q6" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q6" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q6" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q6" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>7. Library timings *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q7" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q7" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q7" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q7" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="lib_q7" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 class="form-group-title">
+                                <i class="fas fa-wifi"></i> Internet & Office Services
+                            </h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label>8. Internet accessibility *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q1" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q1" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q1" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q1" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q1" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>9. Internet speed *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q2" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q2" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q2" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q2" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="net_q2" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>10. Cooperation and behavior from college office staff *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q1" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q1" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q1" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q1" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q1" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>11. Cooperation and behavior of department office staff *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q2" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q2" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q2" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q2" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q2" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>12. Dispersion of scholarships *</label>
+                            <div class="radio-group">
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q3" value="excellent">
+                                    <span>Excellent</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q3" value="very_good">
+                                    <span>Very Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q3" value="good">
+                                    <span>Good</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q3" value="average">
+                                    <span>Average</span>
+                                </label>
+                                <label class="radio-item">
+                                    <input type="radio" name="off_q3" value="below_avg">
+                                    <span>Below Average</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <h3 class="form-group-title">
+                                <i class="fas fa-pen-alt"></i> Additional Feedback
+                            </h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Suggestions for improvement:</label>
+                            <textarea name="suggestions" placeholder="Please share your suggestions..."></textarea>
+                        </div>
+
+                        <div class="btn-group">
+                            <button type="submit" class="btn btn-success">
+                                <i class="fas fa-paper-plane"></i> Submit Feedback
+                            </button>
+                            <button type="reset" class="btn btn-danger">
+                                <i class="fas fa-times"></i> Clear
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

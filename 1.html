@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        * {
+            box-sizing: border-box
+        }
+
+        /* Set height of body and the document to 100% */
+        body,
+        html {
+            height: 1000%;
+            margin: 0;
+            font-family: Arial;
+        }
+
+        /* Style tab links */
+        .tablink {
+            background-color: #555;
+            color: white;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            font-size: 17px;
+            width: 25%;
+        }
+
+        .tablink:hover {
+            background-color: #777;
+        }
+
+        /* Style the tab content (and add height:100% for full page content) */
+        .tabcontent {
+            color: white;
+            display: none;
+            padding: 100px 20px;
+            height: 100%;
+        }
+
+        #Home {
+            background-color: orange;
+        }
+
+        #News {
+            background-color: orange;
+        }
+
+        #Contact {
+            background-color: orange;
+        }
+
+        #About {
+            background-color: orange;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="tablink" onclick="openPage('Home', this, 'orange')">Attendance Summary</button>
+    <button class="tablink" onclick="openPage('News', this, 'orange')" id="defaultOpen">Absent Days</button>
+    <button class="tablink" onclick="openPage('Contact', this, 'orange')">Month View</button>
+
+    <div id="Home" class="tabcontent">
+        <h3>Home</h3>
+        <p>
+            <!DOCTYPE html>
+            <html>
+
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <style>
+                    .btn {
+                        border: none;
+                        color: white;
+                        padding: 14px 28px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+
+                    .success {
+                        background-color: #04AA6D;
+                    }
+
+                    /* Green */
+                    .success:hover {
+                        background-color: #46a049;
+                    }
+
+                    .info {
+                        background-color: #2196F3;
+                    }
+
+                    /* Blue */
+                    .info:hover {
+                        background: #0b7dda;
+                    }
+
+                    .warning {
+                        background-color: #ff9800;
+                    }
+
+                    /* Orange */
+                    .warning:hover {
+                        background: #e68a00;
+                    }
+
+                    .danger {
+                        background-color: #f44336;
+                    }
+
+                    /* Red */
+                    .danger:hover {
+                        background: #da190b;
+                    }
+
+
+
+
+
+
+
+
+
+                    #myTable {
+                        border-collapse: collapse;
+                        width: 100%;
+                        border: 1px solid #ddd;
+                        font-size: 18px;
+                    }
+
+                    #myTable th,
+                    #myTable td {
+                        text-align: left;
+                        padding: 12px;
+                    }
+
+                    #myTable tr {
+                        border-bottom: 1px solid #ddd;
+                    }
+
+                    #myTable tr.header,
+                    #myTable tr:hover {
+                        background-color: #f1f1f1;
+                    }
+                </style>
+            </head>
+
+            <body>
+
+
+
+                <button class="btn success">225 Total Slots</button>
+                <button class="btn info">146 Present Stots</button>
+                <br>
+                <button class="btn warning">64.89 Present %</button>
+                <button class="btn danger">79 Absent Slots</button>
+                <br>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <table id="myTable">
+                    <tr class="header">
+                        <th style="width:60%;">Sr</th>
+                        <th style="width:40%;">Slot Type</th>
+                        <th style="width:40%;">Subject</th>
+                        <th style="width:40%;">Conducted</th>
+                        <th style="width:40%;">Present</th>
+                        <th style="width:40%;">Absent</th>
+                        <th style="width:40%;">Attendance %</th>
+                    </tr>
+                    <tr>
+                        <td>1</td>
+                        <td>Lecture</td>
+                        <td>303105362 -Big Data Analytics</td>
+                        <td>37</td>
+                        <td>26</td>
+                        <td>11</td>
+                        <td>70.27%</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Lab</td>
+                        <td>303105361 -Big Data Analytics</td>
+                        <td>7</td>
+                        <td>5</td>
+                        <td>2</td>
+                        <td>71.43%</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Lecture</td>
+                        <td>303105375 -Information and Network Security</td>
+                        <td>37</td>
+                        <td>26</td>
+                        <td>11</td>
+                        <td>70.27%</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Lab</td>
+                        <td>303105376 -Information and Network Security</td>
+                        <td>14</td>
+                        <td>4</td>
+                        <td>10</td>
+                        <td>28.57%</td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td>Lecture</td>
+                        <td>303105383-Blockchain -</td>
+                        <td>37</td>
+                        <td>27</td>
+                        <td>10</td>
+                        <td>72.97%</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>Lab</td>
+                        <td>303105384-Blockchain -</td>
+                        <td>10</td>
+                        <td>4</td>
+                        <td>6</td>
+                        <td>40.00%</td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td>Lecture</td>
+                        <td>303105383-Blockchain -</td>
+                        <td>37</td>
+                        <td>27</td>
+                        <td>10</td>
+                        <td>72.97%</td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td>Lecture</td>
+                        <td>303108443-Applied Machine Learning </td>
+                        <td>43</td>
+                        <td>29</td>
+                        <td>14</td>
+                        <td>67.44%</td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td>Lab</td>
+                        <td>303108444-Applied Machine Learning Laboratory</td>
+                        <td>43</td>
+                        <td>29</td>
+                        <td>14</td>
+                        <td>67.44%</td>
+                    </tr>
+
+                    <tr>
+                        <td>10</td>
+                        <td>Other</td>
+                        <td>VAC</td>
+                        <td>8</td>
+                        <td>6</td>
+                        <td>2</td>
+                        <td>64.89%</td>
+                    </tr>
+                </table>
+
+
+
+            </body>
+
+            </html>
+        </p>
+
+    </div>
+
+    <div id="News" class="tabcontent">
+        <h3>News</h3>
+        <p>
+            <!DOCTYPE html>
+            <html>
+
+            <head>
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+                <style>
+                    .btn {
+                        border: none;
+                        color: white;
+                        padding: 14px 28px;
+                        font-size: 16px;
+                        cursor: pointer;
+                    }
+
+                    .success {
+                        background-color: #04AA6D;
+                    }
+
+                    /* Green */
+                    .success:hover {
+                        background-color: #46a049;
+                    }
+
+                    .warning {
+                        background-color: #ff9800;
+                    }
+
+                    /* Orange */
+                    .warning:hover {
+                        background: #e68a00;
+                    }
+
+                    .danger {
+                        background-color: #f44336;
+                    }
+
+                    /* Red */
+                    .danger:hover {
+                        background: #da190b;
+                    }
+
+                    * {
+                        box-sizing: border-box;
+                    }
+
+
+
+                    #myTable {
+                        border-collapse: collapse;
+                        width: 100%;
+                        border: 1px solid #ddd;
+                        font-size: 18px;
+                    }
+
+                    #myTable th,
+                    #myTable td {
+                        text-align: left;
+                        padding: 12px;
+                    }
+
+                    #myTable tr {
+                        border-bottom: 1px solid #ddd;
+                    }
+
+                    #myTable tr.header,
+                    #myTable tr:hover {
+                        background-color: #f1f1f1;
+                    }
+                </style>
+            </head>
+
+            <body>
+
+
+                <button class="btn success">15<br>Partial Absent Days<br></button>
+                <button class="btn warning">14<br>Full Absent Days<br></button>
+                <br>
+                <button class="btn danger">79<br>Total Absent Slots<br></button>
+                <br>
+                <p>
+                <p>
+                    <br>
+                    Search
+                    <input type="text" id="myInput">
+
+                    <br>
+
+                <table id="myTable">
+                    <tr class="header">
+                        <th style="width:60%;">Sr.</th>
+                        <th style="width:40%;">Attendance Date</th>
+                        <th style="width:60%;">
+                            <p style="color:blue;">Conducted</p>
+                        </th>
+                        <th style="width:60%;">Present</th>
+                        <th style="width:60%;">
+                            <p style="color:red;">Absent</p>
+                        </th>
+                        <th style="width:60%;">Action</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>11-10-2025 Saturday</td>
+                        <td>
+                            <p style="color:blue;">4</p>
+                        </td>
+                        <td>0</td>
+                        <td>
+                            <p style="color:red;">4</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>12-10-2025 Friday</td>
+                        <td>
+                            <p style="color:blue;">3</p>
+                        </td>
+                        <td>0</td>
+                        <td>
+                            <p style="color:red;">3</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>07-10-2025 Tuesday</td>
+                        <td>
+                            <p style="color:blue;">5</p>
+                        </td>
+                        <td>2</td>
+                        <td>
+                            <p style="color:red;">3</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>06-10-2025 Monday</td>
+                        <td>
+                            <p style="color:blue;">4</p>
+                        </td>
+                        <td>0</td>
+                        <td>
+                            <p style="color:red;">4</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>5.</td>
+                        <td>03-10-2025 Friday</td>
+                        <td>
+                            <p style="color:blue;">3</p>
+                        </td>
+                        <td>0</td>
+                        <td>
+                            <p style="color:red;">3</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>6.</td>
+                        <td>30-09-2025 Tuesday</td>
+                        <td>
+                            <p style="color:blue;">5</p>
+                        </td>
+                        <td>1</td>
+                        <td>
+                            <p style="color:red;">4</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>7.</td>
+                        <td>29-09-2025 Monday</td>
+                        <td>
+                            <p style="color:blue;">4</p>
+                        </td>
+                        <td>1</td>
+                        <td>
+                            <p style="color:red;">3</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>8.</td>
+                        <td>27-09-2025 Saturday</td>
+                        <td>
+                            <p style="color:blue;">4</p>
+                        </td>
+                        <td>3</td>
+                        <td>
+                            <p style="color:red;">1</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>9.</td>
+                        <td>22-09-2025 Mondar</td>
+                        <td>
+                            <p style="color:blue;">4</p>
+                        </td>
+                        <td>0</td>
+                        <td>
+                            <p style="color:red;">4</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td>16-09-2025 Tuesday</td>
+                        <td>
+                            <p style="color:blue;">5</p>
+                        </td>
+                        <td>0</td>
+                        <td>
+                            <p style="color:red;">5</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>11.</td>
+                        <td>15-09-2025 monday</td>
+                        <td>
+                            <p style="color:blue;">4</p>
+                        </td>
+                        <td>2</td>
+                        <td>
+                            <p style="color:red;">2</p>
+                        </td>
+                        <td></td>
+                    </tr>
+                    <td>12.</td>
+                    <td>13-09-2025 Saturday</td>
+                    <td>
+                        <p style="color:blue;">4</p>
+                    </td>
+                    <td>3</td>
+                    <td>
+                        <p style="color:red;">1</p>
+                    </td>
+                    <td></td>
+                    </tr>
+
+            </body>
+
+            </html>
+        </p>
+    </div>
+
+    <div id="Contact" class="tabcontent">
+        <h3>Contact</h3>
+        <p>Get in touch, or swing by for a cup of coffee.</p>
+    </div>
+
+
+    <script>
+        function openPage(pageName, elmnt, color) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablink");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].style.backgroundColor = "";
+            }
+            document.getElementById(pageName).style.display = "block";
+            elmnt.style.backgroundColor = color;
+        }
+
+        // Get the element with id="defaultOpen" and click on it
+        document.getElementById("defaultOpen").click();
+    </script>
+
+</body>
+
+</html>
+
+
+
+-----------------------------------------------------------------------------------------------------
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        .btn {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+
+
+        }
+
+        .success {
+            background-color: #04AA6D;
+        }
+
+        /* Green */
+        .success:hover {
+            background-color: #46a049;
+        }
+
+        input[type=text],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+        }
+
+        input[type=submit] {
+            background-color: #04AA6D;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type=submit]:hover {
+            background-color: #45a049;
+        }
+
+        .container {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h3>* Search Your Admit Card</h3>
+
+
+
+    <label for="country">*Exam</label>
+    <select id="country" name="country">
+        <option value="australia">Select Exam</option>
+        <option value="australia">BTech Regular Exam, Semester-8,Summer 2025-26.</option>
+        <option value="australia">BTech Regular Exam, Semster-7,Winter 2025-26.</option>
+        <option value="australia">BTech Regular Exam, Semster-6,Winter 2025-26.</option>
+        <option value="australia">BTech Regular Exam, Semster-5,summer 2024-25.</option>
+        <option value="australia">BTech Regulae Exam, Semster-5,Winter 2024-25.</option>
+        <option value="australia">BTech Regulae Exam, Semster-4,Lateral summer 2023-24.</option>
+
+
+
+    </select>
+
+
+
+
+    <h3>Schedule for - BTech Regular Exam, Semester - 7, Winter 2025-26</h3>
+
+    <table>
+        <tr>
+            <th>Sr.</th>
+            <th>Date</th>
+            <th>Day</th>
+            <th>Exam Time</th>
+            <th>Exam Type</th>
+            <th>Code</th>
+            <th>Code</th>
+            <th>Block No.</th>
+            <th>Room No.</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>06-12-2025</td>
+            <td>Saturday</td>
+            <td>10:30 AM</td>
+            <td>Theory</td>
+            <td>303108443</td>
+            <td>Applied Machine Learning</td>
+            <td>120 </td>
+            <td>305 - Class Room</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>08-12-2025 </td>
+            <td>Monday</td>
+            <td>02:00 PM</td>
+            <td>Theory</td>
+            <td>303105375</td>
+            <td>Information and Network Security</td>
+            <td>21</td>
+            <td>A-222 - CLASSROOM</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>17-12-2025</td>
+            <td>Wednesday</td>
+            <td>10:30 AM</td>
+            <td>Theory</td>
+            <td>303105453</td>
+            <td>Cyber Physical Systems</td>
+            <td>22</td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>27-12-2025</td>
+            <td>Saturday</td>
+            <td>02:00 PM</td>
+            <td>Theory</td>
+            <td>303105361 </td>
+            <td>Big Data Analytics</td>
+            <td>12</td>
+            <td>A-208 - Class Room</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>29-12-2025</td>
+            <td>Monday</td>
+            <td>10:30 AM </td>
+            <td>Theory</td>
+            <td>303105383</td>
+            <td>Blockchain</td>
+            <td>4</td>
+            <td>N-508 - CLASSROOM</td>
+        </tr>
+        <tr>
+            <td>6</td>
+            <td>08-11-2025</td>
+            <td>Saturday</td>
+            <td>09:00 AM</td>
+            <td>Practical</td>
+            <td>303105376</td>
+            <td>Information and Network Security Laboratory</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>7</td>
+            <td>08-11-2025</td>
+            <td>Saturday</td>
+            <td>09:00 AM </td>
+            <td>Practical</td>
+            <td>303105376</td>
+            <td>Information and Network Security Laboratory</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8</td>
+            <td>10-11-2025</td>
+            <td>Monday</td>
+            <td>09:00 AM</td>
+            <td>Practical</td>
+            <td>303105362</td>
+            <td>Big Data Analytics Laboratory</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>9</td>
+            <td>22-11-2025</td>
+            <td>Saturday</td>
+            <td>09:00 AM</td>
+            <td>Practical</td>
+            <td>303105384</td>
+            <td>Blockchain Laboratory</td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>29-11-2025</td>
+            <td>Saturday</td>
+            <td>09:00 AM</td>
+            <td>Practical </td>
+            <td>303108403</td>
+            <td>Project II</td>
+            <td></td>
+            <td></td>
+        </tr>
+
+
+
+
+
+
+
+    </table>
+
+</body>
+
+</html>
+
+
+https://fontawesome.com/icons/packs/brands

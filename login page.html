@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: black;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Add padding to containers */
+        .container {
+            padding: 16px;
+            background-color: white;
+        }
+
+
+
+
+
+
+
+        .btn {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .success {
+            background-color: #04AA6D;
+        }
+
+        /* Green */
+        .success:hover {
+            background-color: #46a049;
+        }
+
+        .danger {
+            background-color: #f44336;
+        }
+
+        /* Red */
+        .danger:hover {
+            background: #da190b;
+        }
+
+
+
+
+
+
+
+        /* Full-width input fields */
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+            padding: 15px;
+            margin: 5px 0 22px 0;
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+
+        input[type=text]:focus,
+        input[type=password]:focus {
+            background-color: #ddd;
+            outline: none;
+        }
+
+
+        /* Overwrite default styles of hr */
+        hr {
+            border: 1px solid #f1f1f1;
+            margin-bottom: 25px;
+        }
+
+        /* Set a style for the submit button */
+        .registerbtn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 16px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            opacity: 0.9;
+        }
+
+        .registerbtn:hover {
+            opacity: 1;
+        }
+
+        /* Add a blue text color to links */
+        a {
+            color: dodgerblue;
+        }
+
+        /* Set a grey background color and center the text of the "sign in" section */
+        .signin {
+            background-color: #f1f1f1;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <img src="123456.jpg" alt="Paris" style="width:50%;">
+
+
+    <form action="/action_page.php">
+        <div class="container">
+
+            <a target="_blank" href="download.png">
+                <img src="download.png" alt="Forest" style="width:150px">
+            </a>
+
+
+
+            <p>*Role</p>
+            <label class="container">Staff
+                <input type="radio" checked="checked" name="radio">
+                <span class="checkmark"></span>
+            </label>
+            <label class="container">Student
+                <input type="radio" name="radio">
+                <span class="checkmark"></span>
+            </label><br></br>
+
+
+            <label for="email"><b> *Username</b></label>
+            <input type="text" placeholder="mobile no./ email /staff code" name="email" id="email" required>
+
+
+
+            <b>*Password:</b><input type="password" value="FakePSW" id="myInput"><br><br>
+            <input type="checkbox" onclick="myFunction()">Show Password
+
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("myInput");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                }
+            </script>
+
+            <script>
+                function myFunction() {
+                    var x = document.getElementById("myInput");
+                    if (x.type === "password") {
+                        x.type = "text";
+                    } else {
+                        x.type = "password";
+                    }
+                }
+            </script>
+            <hr>
+
+
+
+
+
+            <button class="btn success">Login</button>
+            <button class="btn danger">Forgot Password</button>
+
+            <div class="container signin">
+                <p> <a href="#">passout studnt click here </a>.</p>
+            </div>
+    </form>
+
+</body>
+
+</html>

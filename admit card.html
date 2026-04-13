@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admit Card - Exam Schedule</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h3 {
+            color: #333;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        label {
+            display: block;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 4px;
+            font-size: 15px;
+            background-color: white;
+            cursor: pointer;
+            margin-bottom: 30px;
+            transition: border-color 0.3s ease;
+        }
+
+        select:hover {
+            border-color: #04AA6D;
+        }
+
+        select:focus {
+            outline: none;
+            border-color: #04AA6D;
+            box-shadow: 0 0 5px rgba(4, 170, 109, 0.3);
+        }
+
+        .exam-section {
+            display: none;
+            animation: fadeIn 0.4s ease-in;
+        }
+
+        .exam-section.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .exam-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px;
+            text-align: left;
+            font-weight: 600;
+            position: sticky;
+            top: 0;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid #eee;
+            text-align: left;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .no-select-message {
+            text-align: center;
+            padding: 40px;
+            color: #999;
+            font-size: 16px;
+        }
+
+        .no-select-message i {
+            font-size: 50px;
+            color: #ddd;
+            display: block;
+            margin-bottom: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            h3 {
+                font-size: 20px;
+            }
+
+            th,
+            td {
+                padding: 10px;
+                font-size: 14px;
+            }
+
+            .exam-header {
+                font-size: 16px;
+                padding: 12px 15px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 12px;
+            }
+
+            h3 {
+                font-size: 18px;
+            }
+
+            table {
+                font-size: 12px;
+            }
+
+            th,
+            td {
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>Search Your Admit Card</h3>
+
+        <label for="examSelect">*Select Exam</label>
+        <select id="examSelect" onchange="showExamSchedule()">
+            <option value="">-- Select Exam --</option>
+            <option value="semester8">BTech Regular Exam, Semester-8, Summer 2025-26</option>
+            <option value="semester7">BTech Regular Exam, Semester-7, Winter 2025-26</option>
+            <option value="semester6">BTech Regular Exam, Semester-6, Summer 2024-25</option>
+            <option value="semester5_2024">BTech Regular Exam, Semester-5, Winter 2024-25</option>
+            <option value="semester5_2025">BTech Regular Exam, Semester-5, Summer 2024-25</option>
+            <option value="semester4">BTech Lateral Exam, Semester-4, Summer 2023-24</option>
+        </select>
+
+        <!-- Default Message -->
+        <div id="noSelectMessage" class="no-select-message">
+            <b>Please select an exam to view schedule</b>
+        </div>
+
+        <!-- Semester 8 Schedule -->
+        <div id="semester8" class="exam-section">
+            <div class="exam-header">
+                Schedule for - BTech Regular Exam, Semester - 8, Summer 2025-26
+            </div>
+            <table>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Exam Time</th>
+                    <th>Exam Type</th>
+                    <th>Code</th>
+                    <th>Subject</th>
+                    <th>Block No.</th>
+                    <th>Room No.</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>15-06-2026</td>
+                    <td>Saturday</td>
+                    <td>10:30 AM</td>
+                    <td>Theory</td>
+                    <td>303108555</td>
+                    <td>Advanced Software Engineering</td>
+                    <td>150</td>
+                    <td>401 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>17-06-2026</td>
+                    <td>Monday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105456</td>
+                    <td>Cloud Computing</td>
+                    <td>25</td>
+                    <td>A-305 - CLASSROOM</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Semester 7 Schedule -->
+        <div id="semester7" class="exam-section">
+            <div class="exam-header">
+                Schedule for - BTech Regular Exam, Semester - 7, Winter 2025-26
+            </div>
+            <table>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Exam Time</th>
+                    <th>Exam Type</th>
+                    <th>Code</th>
+                    <th>Subject</th>
+                    <th>Block No.</th>
+                    <th>Room No.</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>06-12-2025</td>
+                    <td>Saturday</td>
+                    <td>10:30 AM</td>
+                    <td>Theory</td>
+                    <td>303108443</td>
+                    <td>Applied Machine Learning</td>
+                    <td>120</td>
+                    <td>305 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>08-12-2025</td>
+                    <td>Monday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105375</td>
+                    <td>Information and Network Security</td>
+                    <td>21</td>
+                    <td>A-222 - CLASSROOM</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>17-12-2025</td>
+                    <td>Wednesday</td>
+                    <td>10:30 AM</td>
+                    <td>Theory</td>
+                    <td>303105453</td>
+                    <td>Cyber Physical Systems</td>
+                    <td>22</td>
+                    <td>B-105 - Lab</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>27-12-2025</td>
+                    <td>Saturday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105361</td>
+                    <td>Big Data Analytics</td>
+                    <td>12</td>
+                    <td>A-208 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>29-12-2025</td>
+                    <td>Monday</td>
+                    <td>10:30 AM</td>
+                    <td>Theory</td>
+                    <td>303105383</td>
+                    <td>Blockchain</td>
+                    <td>4</td>
+                    <td>N-508 - CLASSROOM</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>08-11-2025</td>
+                    <td>Saturday</td>
+                    <td>09:00 AM</td>
+                    <td>Practical</td>
+                    <td>303105376</td>
+                    <td>Information and Network Security Laboratory</td>
+                    <td>--</td>
+                    <td>Lab-304</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>10-11-2025</td>
+                    <td>Monday</td>
+                    <td>09:00 AM</td>
+                    <td>Practical</td>
+                    <td>303105362</td>
+                    <td>Big Data Analytics Laboratory</td>
+                    <td>--</td>
+                    <td>Lab-305</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>22-11-2025</td>
+                    <td>Saturday</td>
+                    <td>09:00 AM</td>
+                    <td>Practical</td>
+                    <td>303105384</td>
+                    <td>Blockchain Laboratory</td>
+                    <td>--</td>
+                    <td>Lab-306</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>29-11-2025</td>
+                    <td>Saturday</td>
+                    <td>09:00 AM</td>
+                    <td>Practical</td>
+                    <td>303108403</td>
+                    <td>Project II</td>
+                    <td>--</td>
+                    <td>Lab-307</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Semester 6 Schedule -->
+        <div id="semester6" class="exam-section">
+            <div class="exam-header">
+                Schedule for - BTech Regular Exam, Semester - 6, Summer 2024-25
+            </div>
+            <table>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Exam Time</th>
+                    <th>Exam Type</th>
+                    <th>Code</th>
+                    <th>Subject</th>
+                    <th>Block No.</th>
+                    <th>Room No.</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>11-04-2025</td>
+                    <td>Tuesday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105385</td>
+                    <td>MEA(R)N Stack Web Development</td>
+                    <td>52</td>
+                    <td>D-101 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>12-04-2025</td>
+                    <td>Saturday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303108354</td>
+                    <td>.NET Programming</td>
+                    <td>25</td>
+                    <td>D-101 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>19-04-2025</td>
+                    <td>Saturday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105307</td>
+                    <td>Artificial Intelligence</td>
+                    <td>10</td>
+                    <td>A-225 - Class Room</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Semester 5 Winter 2024-25 Schedule -->
+        <div id="semester5_2024" class="exam-section">
+            <div class="exam-header">
+                Schedule for - BTech Regular Exam, Semester - 5, Winter 2024-25
+            </div>
+            <table>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Exam Time</th>
+                    <th>Exam Type</th>
+                    <th>Code</th>
+                    <th>Subject</th>
+                    <th>Block No.</th>
+                    <th>Room No.</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>11-11-2024</td>
+                    <td>Monday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105218</td>
+                    <td>Design and Analysis of Algorithm</td>
+                    <td>80</td>
+                    <td>A-110 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>13-11-2024</td>
+                    <td>Wednesday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303108305</td>
+                    <td>Software Engineering And Project Management</td>
+                    <td>58</td>
+                    <td>A-105 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>14-11-2024</td>
+                    <td>Thursday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303108301</td>
+                    <td>Theory of Computation</td>
+                    <td>112</td>
+                    <td>B-120 - Lab</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>15-11-2024</td>
+                    <td>Friday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105309</td>
+                    <td>Enterprise Programming using Java</td>
+                    <td>77</td>
+                    <td>A-108 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>18-11-2024</td>
+                    <td>Monday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303108303</td>
+                    <td>Data Mining and Data Visualization</td>
+                    <td>125</td>
+                    <td>A-112 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>20-11-2024</td>
+                    <td>Wednesday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105302</td>
+                    <td>Azure Fundamentals</td>
+                    <td>76</td>
+                    <td>A-106 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>7</td>
+                    <td>21-10-2024</td>
+                    <td>Monday</td>
+                    <td>09:00 AM</td>
+                    <td>Practical</td>
+                    <td>303105310</td>
+                    <td>Enterprise Programming using Java Laboratory</td>
+                    <td>--</td>
+                    <td>Lab-101</td>
+                </tr>
+                <tr>
+                    <td>8</td>
+                    <td>22-10-2024</td>
+                    <td>Tuesday</td>
+                    <td>09:00 AM</td>
+                    <td>Practical</td>
+                    <td>303108304</td>
+                    <td>Data Mining and Data Visualization Laboratory</td>
+                    <td>--</td>
+                    <td>Lab-102</td>
+                </tr>
+                <tr>
+                    <td>9</td>
+                    <td>25-10-2024</td>
+                    <td>Friday</td>
+                    <td>09:00 AM</td>
+                    <td>Practical</td>
+                    <td>303105219</td>
+                    <td>Design and Analysis of Algorithm Laboratory</td>
+                    <td>--</td>
+                    <td>Lab-103</td>
+                </tr>
+                <tr>
+                    <td>10</td>
+                    <td>26-10-2024</td>
+                    <td>Saturday</td>
+                    <td>09:00 AM</td>
+                    <td>Practical</td>
+                    <td>303108306</td>
+                    <td>Software Engineering And Project Management Laboratory</td>
+                    <td>--</td>
+                    <td>Lab-104</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Semester 5 Summer 2024-25 Schedule -->
+        <div id="semester5_2025" class="exam-section">
+            <div class="exam-header">
+                Schedule for - BTech Regular Exam, Semester - 5, Summer 2024-25
+            </div>
+            <table>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Exam Time</th>
+                    <th>Exam Type</th>
+                    <th>Code</th>
+                    <th>Subject</th>
+                    <th>Block No.</th>
+                    <th>Room No.</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>20-05-2025</td>
+                    <td>Tuesday</td>
+                    <td>10:30 AM</td>
+                    <td>Theory</td>
+                    <td>303105218</td>
+                    <td>Design and Analysis of Algorithm</td>
+                    <td>75</td>
+                    <td>A-202 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>22-05-2025</td>
+                    <td>Thursday</td>
+                    <td>10:30 AM</td>
+                    <td>Theory</td>
+                    <td>303108305</td>
+                    <td>Software Engineering And Project Management</td>
+                    <td>60</td>
+                    <td>A-204 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>24-05-2025</td>
+                    <td>Saturday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303108301</td>
+                    <td>Theory of Computation</td>
+                    <td>100</td>
+                    <td>A-208 - Class Room</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- Semester 4 Lateral Schedule -->
+        <div id="semester4" class="exam-section">
+            <div class="exam-header">
+                Schedule for - BTech Lateral Exam, Semester - 4, Summer 2023-24
+            </div>
+            <table>
+                <tr>
+                    <th>Sr.</th>
+                    <th>Date</th>
+                    <th>Day</th>
+                    <th>Exam Time</th>
+                    <th>Exam Type</th>
+                    <th>Code</th>
+                    <th>Subject</th>
+                    <th>Block No.</th>
+                    <th>Room No.</th>
+                </tr>
+                <tr>
+                    <td>1</td>
+                    <td>15-06-2024</td>
+                    <td>Saturday</td>
+                    <td>10:30 AM</td>
+                    <td>Theory</td>
+                    <td>303105180</td>
+                    <td>Lateral Entry - Basic Programming</td>
+                    <td>50</td>
+                    <td>A-301 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>17-06-2024</td>
+                    <td>Monday</td>
+                    <td>02:00 PM</td>
+                    <td>Theory</td>
+                    <td>303105181</td>
+                    <td>Lateral Entry - Digital Logic</td>
+                    <td>55</td>
+                    <td>A-302 - Class Room</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>20-06-2024</td>
+                    <td>Thursday</td>
+                    <td>10:30 AM</td>
+                    <td>Theory</td>
+                    <td>303105182</td>
+                    <td>Lateral Entry - Web Development</td>
+                    <td>60</td>
+                    <td>A-303 - Class Room</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function showExamSchedule() {
+            const examSelect = document.getElementById('examSelect');
+            const selectedValue = examSelect.value;
+
+            // Hide all exam sections
+            const allSections = document.querySelectorAll('.exam-section');
+            allSections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Hide no-select message
+            const noSelectMessage = document.getElementById('noSelectMessage');
+            noSelectMessage.style.display = 'none';
+
+            // Show selected section
+            if (selectedValue) {
+                const selectedSection = document.getElementById(selectedValue);
+                if (selectedSection) {
+                    selectedSection.classList.add('active');
+                }
+            } else {
+                // Show message if no selection
+                noSelectMessage.style.display = 'block';
+            }
+        }
+
+        // Initialize on page load - show no selection message
+        window.addEventListener('load', function () {
+            showExamSchedule();
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,1640 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .btn {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .success {
+            background-color: #04AA6D;
+        }
+
+        /* Green */
+        .success:hover {
+            background-color: #46a049;
+        }
+
+        .warning {
+            background-color: #ff9800;
+        }
+
+        /* Orange */
+        .warning:hover {
+            background: #e68a00;
+        }
+
+        .danger {
+            background-color: #f44336;
+        }
+
+        /* Red */
+        .danger:hover {
+            background: #da190b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+        #myTable th,
+        #myTable td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        #myTable tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        #myTable tr.header,
+        #myTable tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <button class="btn success">15<br>Partial Absent Days<br></button>
+
+    <button class="btn warning">14<br>Full Absent Days<br></button>
+    <button class="btn danger">79<br>Total Absent Slots<br></button>
+    <p>
+    <p>
+        <br>
+        Search
+        <input type="text" id="myInput">
+
+        <br>
+
+    <table id="myTable">
+        <tr class="header">
+            <th style="width:60%;">Sr.</th>
+            <th style="width:40%;">Attendance Date</th>
+            <th style="width:60%;">
+                <p style="color:blue;">Conducted</p>
+            </th>
+            <th style="width:60%;">Present</th>
+            <th style="width:60%;">
+                <p style="color:red;">Absent</p>
+            </th>
+            <th style="width:60%;">Action</th>
+        </tr>
+        <tr>
+            <td>1.</td>
+            <td>11-10-2025 Saturday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">4</p>
+            </td>
+            <td>
+                <!DOCTYPE html>
+                <html>
+
+                <head>
+
+                    <style>
+                        /* Set a style for all buttons */
+                        button {
+                            background-color: #04AA6D;
+                            color: white;
+                            padding: 14px 20px;
+                            margin: 8px 0;
+                            border: none;
+                            cursor: pointer;
+                            width: 100%;
+                        }
+
+
+
+
+                        /* Center the image and position the close button */
+                        .imgcontainer {
+                            text-align: center;
+                            margin: 24px 0 12px 0;
+                            position: relative;
+                        }
+
+
+
+
+                        /* The Modal (background) */
+                        .modal {
+                            display: none;
+                            /* Hidden by default */
+                            position: fixed;
+                            /* Stay in place */
+                            z-index: 1;
+                            /* Sit on top */
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            /* Full width */
+                            height: 100%;
+                            /* Full height */
+                            overflow: auto;
+                            /* Enable scroll if needed */
+                            background-color: rgb(0, 0, 0);
+                            /* Fallback color */
+                            background-color: rgba(0, 0, 0, 0.4);
+                            /* Black w/ opacity */
+                            padding-top: 60px;
+                        }
+
+                        /* Modal Content/Box */
+                        .modal-content {
+                            background-color: #fefefe;
+                            margin: 5% auto 15% auto;
+                            /* 5% from the top, 15% from the bottom and centered */
+                            border: 1px solid #888;
+                            width: 80%;
+                            /* Could be more or less, depending on screen size */
+                        }
+
+                        /* The Close Button (x) */
+                        .close {
+                            position: absolute;
+                            right: 25px;
+                            top: 0;
+                            color: #000;
+                            font-size: 35px;
+                            font-weight: bold;
+                        }
+
+
+                        /* Add Zoom Animation */
+                        .animate {
+                            -webkit-animation: animatezoom 0.6s;
+                            animation: animatezoom 0.6s
+                        }
+
+                        @-webkit-keyframes animatezoom {
+                            from {
+                                -webkit-transform: scale(0)
+                            }
+
+                            to {
+                                -webkit-transform: scale(1)
+                            }
+                        }
+
+                        table {
+                            border-collapse: collapse;
+                            border-spacing: 0;
+                            width: 100%;
+                            border: 1px solid #ddd;
+                        }
+
+                        th,
+                        td {
+                            text-align: left;
+                            padding: 16px;
+                        }
+
+                        tr:nth-child(even) {
+                            background-color: #f2f2f2;
+                        }
+                    </style>
+                </head>
+
+                <body>
+
+
+
+                    <button onclick="document.getElementById('id01').style.display='block'"
+                        style="width:auto;">Login</button>
+
+                    <div id="id01" class="modal">
+
+
+
+                        <form class="modal-content animate" action="/action_page.php" method="post">
+                            <div class="imgcontainer">
+                                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                                    title="Close Modal">&times;</span>
+
+
+                                <h3>Attendance Detail of 11-10-2025</h3>
+
+                                <table>
+                                    <tr>
+
+                                        <th>Sr.</th>
+                                        <th>Time</th>
+                                        <th>Subject</th>
+                                        <th>Staff</th>
+                                        <th>Siot Type</th>
+                                        <th>status</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>9:30AM-10:25AM</td>
+                                        <td>303105383</td>
+                                        <td>Mr.khan zlyam</td>
+                                        <td>Lecture</td>
+                                        <td>
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <style>
+                                                    .button {
+                                                        background-color: #ff1a1a;
+                                                        border: none;
+                                                        padding: 10px 20px;
+                                                        margin: 4px 2px;
+                                                        border-radius: 16px;
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body><button class="button">Absent</button></body>
+
+                                            </html>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>10:30AM-11:20AM</td>
+                                        <td>303105361</td>
+                                        <td>Ms.Sonali Roupchand korl</td>
+                                        <td>Lecture</td>
+                                        <td>
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <style>
+                                                    .button {
+                                                        background-color: #ff1a1a;
+                                                        border: none;
+                                                        padding: 10px 20px;
+                                                        margin: 4px 2px;
+                                                        border-radius: 16px;
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body><button class="button">Absent</button></body>
+
+                                            </html>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>12:20PM-1:15PM</td>
+                                        <td>303105375</td>
+                                        <td>Mr.Ronl DAS</td>
+                                        <td>Lecture</td>
+                                        <td>
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <style>
+                                                    .button {
+                                                        background-color: #ff1a1a;
+                                                        border: none;
+                                                        padding: 10px 20px;
+                                                        margin: 4px 2px;
+                                                        border-radius: 16px;
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body><button class="button">Absent</button></body>
+
+                                            </html>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td>1:15PM-2:10PM</td>
+                                        <td>303108443</td>
+                                        <td>Mr.Raumak Ray</td>
+                                        <td>lecture</td>
+                                        <td>
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <style>
+                                                    .button {
+                                                        background-color: #ff1a1a;
+                                                        border: none;
+                                                        padding: 10px 20px;
+                                                        margin: 4px 2px;
+                                                        border-radius: 16px;
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body><button class="button">Absent</button></body>
+
+                                            </html>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <script>
+                        // Get the modal
+                        var modal = document.getElementById('id01');
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function (event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+                    </script>
+
+                </body>
+
+                </html>
+            </td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td>12-10-2025 Friday</td>
+            <td>
+                <p style="color:blue;">3</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">3</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td>07-10-2025 Tuesday</td>
+            <td>
+                <p style="color:blue;">5</p>
+            </td>
+            <td>2</td>
+            <td>
+                <p style="color:red;">3</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>4.</td>
+            <td>06-10-2025 Monday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">4</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>5.</td>
+            <td>03-10-2025 Friday</td>
+            <td>
+                <p style="color:blue;">3</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">3</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>6.</td>
+            <td>30-09-2025 Tuesday</td>
+            <td>
+                <p style="color:blue;">5</p>
+            </td>
+            <td>1</td>
+            <td>
+                <p style="color:red;">4</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>7.</td>
+            <td>29-09-2025 Monday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>1</td>
+            <td>
+                <p style="color:red;">3</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8.</td>
+            <td>27-09-2025 Saturday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>3</td>
+            <td>
+                <p style="color:red;">1</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>9.</td>
+            <td>22-09-2025 Mondar</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">4</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>16-09-2025 Tuesday</td>
+            <td>
+                <p style="color:blue;">5</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">5</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>11.</td>
+            <td>15-09-2025 monday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>2</td>
+            <td>
+                <p style="color:red;">2</p>
+            </td>
+            <td></td>
+        </tr>
+        <td>12.</td>
+        <td>13-09-2025 Saturday</td>
+        <td>
+            <p style="color:blue;">4</p>
+        </td>
+        <td>3</td>
+        <td>
+            <p style="color:red;">1</p>
+        </td>
+        <td></td>
+        </tr>
+
+</body>
+
+</html>
+
+
+
+
+
+
+----------------------------------------------------------------------------------------------------
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .btn {
+            border: none;
+            color: white;
+            padding: 14px 28px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .success {
+            background-color: #04AA6D;
+        }
+
+        /* Green */
+        .success:hover {
+            background-color: #46a049;
+        }
+
+        .warning {
+            background-color: #ff9800;
+        }
+
+        /* Orange */
+        .warning:hover {
+            background: #e68a00;
+        }
+
+        .danger {
+            background-color: #f44336;
+        }
+
+        /* Red */
+        .danger:hover {
+            background: #da190b;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+
+        #myTable {
+            border-collapse: collapse;
+            width: 100%;
+            border: 1px solid #ddd;
+            font-size: 18px;
+        }
+
+        #myTable th,
+        #myTable td {
+            text-align: left;
+            padding: 12px;
+        }
+
+        #myTable tr {
+            border-bottom: 1px solid #ddd;
+        }
+
+        #myTable tr.header,
+        #myTable tr:hover {
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <button class="btn success">15<br>Partial Absent Days<br></button>
+
+    <button class="btn warning">14<br>Full Absent Days<br></button>
+    <button class="btn danger">79<br>Total Absent Slots<br></button>
+    <p>
+    <p>
+        <br>
+        Search
+        <input type="text" id="myInput">
+
+        <br>
+
+    <table id="myTable">
+        <tr class="header">
+            <th style="width:60%;">Sr.</th>
+            <th style="width:40%;">Attendance Date</th>
+            <th style="width:60%;">
+                <p style="color:blue;">Conducted</p>
+            </th>
+            <th style="width:60%;">Present</th>
+            <th style="width:60%;">
+                <p style="color:red;">Absent</p>
+            </th>
+            <th style="width:60%;">Action</th>
+        </tr>
+        <tr>
+            <td>1.</td>
+            <td>11-10-2025 Saturday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">4</p>
+            </td>
+            <td>
+                <!DOCTYPE html>
+                <html>
+
+                <head>
+
+                    <style>
+                        /* Set a style for all buttons */
+                        button {
+                            background-color: #04AA6D;
+                            color: white;
+                            padding: 14px 20px;
+                            margin: 8px 0;
+                            border: none;
+                            cursor: pointer;
+                            width: 100%;
+                        }
+
+
+
+
+                        /* Center the image and position the close button */
+                        .imgcontainer {
+                            text-align: center;
+                            margin: 24px 0 12px 0;
+                            position: relative;
+                        }
+
+
+
+
+                        /* The Modal (background) */
+                        .modal {
+                            display: none;
+                            /* Hidden by default */
+                            position: fixed;
+                            /* Stay in place */
+                            z-index: 1;
+                            /* Sit on top */
+                            left: 0;
+                            top: 0;
+                            width: 100%;
+                            /* Full width */
+                            height: 100%;
+                            /* Full height */
+                            overflow: auto;
+                            /* Enable scroll if needed */
+                            background-color: rgb(0, 0, 0);
+                            /* Fallback color */
+                            background-color: rgba(0, 0, 0, 0.4);
+                            /* Black w/ opacity */
+                            padding-top: 60px;
+                        }
+
+                        /* Modal Content/Box */
+                        .modal-content {
+                            background-color: #fefefe;
+                            margin: 5% auto 15% auto;
+                            /* 5% from the top, 15% from the bottom and centered */
+                            border: 1px solid #888;
+                            width: 80%;
+                            /* Could be more or less, depending on screen size */
+                        }
+
+                        /* The Close Button (x) */
+                        .close {
+                            position: absolute;
+                            right: 25px;
+                            top: 0;
+                            color: #000;
+                            font-size: 35px;
+                            font-weight: bold;
+                        }
+
+
+                        /* Add Zoom Animation */
+                        .animate {
+                            -webkit-animation: animatezoom 0.6s;
+                            animation: animatezoom 0.6s
+                        }
+
+                        @-webkit-keyframes animatezoom {
+                            from {
+                                -webkit-transform: scale(0)
+                            }
+
+                            to {
+                                -webkit-transform: scale(1)
+                            }
+                        }
+
+                        table {
+                            border-collapse: collapse;
+                            border-spacing: 0;
+                            width: 100%;
+                            border: 1px solid #ddd;
+                        }
+
+                        th,
+                        td {
+                            text-align: left;
+                            padding: 16px;
+                        }
+
+                        tr:nth-child(even) {
+                            background-color: #f2f2f2;
+                        }
+                    </style>
+                </head>
+
+                <body>
+
+
+
+                    <button onclick="document.getElementById('id01').style.display='block'"
+                        style="width:auto;">Login</button>
+
+                    <div id="id01" class="modal">
+
+
+
+                        <form class="modal-content animate" action="/action_page.php" method="post">
+                            <div class="imgcontainer">
+                                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                                    title="Close Modal">&times;</span>
+
+
+                                <h3>Attendance Detail of 11-10-2025</h3>
+
+                                <table>
+                                    <tr>
+
+                                        <th>Sr.</th>
+                                        <th>Time</th>
+                                        <th>Subject</th>
+                                        <th>Staff</th>
+                                        <th>Siot Type</th>
+                                        <th>status</th>
+                                    </tr>
+                                    <tr>
+                                        <td>1.</td>
+                                        <td>9:30AM-10:25AM</td>
+                                        <td>303105383</td>
+                                        <td>Mr.khan zlyam</td>
+                                        <td>Lecture</td>
+                                        <td>
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <style>
+                                                    .button {
+                                                        background-color: #ff1a1a;
+                                                        border: none;
+                                                        padding: 10px 20px;
+                                                        margin: 4px 2px;
+                                                        border-radius: 16px;
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body><button class="button">Absent</button></body>
+
+                                            </html>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>2.</td>
+                                        <td>10:30AM-11:20AM</td>
+                                        <td>303105361</td>
+                                        <td>Ms.Sonali Roupchand korl</td>
+                                        <td>Lecture</td>
+                                        <td>
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <style>
+                                                    .button {
+                                                        background-color: #ff1a1a;
+                                                        border: none;
+                                                        padding: 10px 20px;
+                                                        margin: 4px 2px;
+                                                        border-radius: 16px;
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body><button class="button">Absent</button></body>
+
+                                            </html>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>3.</td>
+                                        <td>12:20PM-1:15PM</td>
+                                        <td>303105375</td>
+                                        <td>Mr.Ronl DAS</td>
+                                        <td>Lecture</td>
+                                        <td>
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <style>
+                                                    .button {
+                                                        background-color: #ff1a1a;
+                                                        border: none;
+                                                        padding: 10px 20px;
+                                                        margin: 4px 2px;
+                                                        border-radius: 16px;
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body><button class="button">Absent</button></body>
+
+                                            </html>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>4.</td>
+                                        <td>1:15PM-2:10PM</td>
+                                        <td>303108443</td>
+                                        <td>Mr.Raumak Ray</td>
+                                        <td>lecture</td>
+                                        <td>
+                                            <!DOCTYPE html>
+                                            <html>
+
+                                            <head>
+
+                                                <style>
+                                                    .button {
+                                                        background-color: #ff1a1a;
+                                                        border: none;
+                                                        padding: 10px 20px;
+                                                        margin: 4px 2px;
+                                                        border-radius: 16px;
+                                                    }
+                                                </style>
+                                            </head>
+
+                                            <body><button class="button">Absent</button></body>
+
+                                            </html>
+                                        </td>
+                                    </tr>
+
+
+                                </table>
+
+                            </div>
+                        </form>
+                    </div>
+
+                    <script>
+                        // Get the modal
+                        var modal = document.getElementById('id01');
+
+                        // When the user clicks anywhere outside of the modal, close it
+                        window.onclick = function (event) {
+                            if (event.target == modal) {
+                                modal.style.display = "none";
+                            }
+                        }
+                    </script>
+
+                </body>
+
+                </html>
+            </td>
+        </tr>
+        <tr>
+            <td>2.</td>
+            <td>12-10-2025 Friday</td>
+            <td>
+                <p style="color:blue;">3</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">3</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>3.</td>
+            <td>07-10-2025 Tuesday</td>
+            <td>
+                <p style="color:blue;">5</p>
+            </td>
+            <td>2</td>
+            <td>
+                <p style="color:red;">3</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>4.</td>
+            <td>06-10-2025 Monday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">4</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>5.</td>
+            <td>03-10-2025 Friday</td>
+            <td>
+                <p style="color:blue;">3</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">3</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>6.</td>
+            <td>30-09-2025 Tuesday</td>
+            <td>
+                <p style="color:blue;">5</p>
+            </td>
+            <td>1</td>
+            <td>
+                <p style="color:red;">4</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>7.</td>
+            <td>29-09-2025 Monday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>1</td>
+            <td>
+                <p style="color:red;">3</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>8.</td>
+            <td>27-09-2025 Saturday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>3</td>
+            <td>
+                <p style="color:red;">1</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>9.</td>
+            <td>22-09-2025 Mondar</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">4</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>10</td>
+            <td>16-09-2025 Tuesday</td>
+            <td>
+                <p style="color:blue;">5</p>
+            </td>
+            <td>0</td>
+            <td>
+                <p style="color:red;">5</p>
+            </td>
+            <td></td>
+        </tr>
+        <tr>
+            <td>11.</td>
+            <td>15-09-2025 monday</td>
+            <td>
+                <p style="color:blue;">4</p>
+            </td>
+            <td>2</td>
+            <td>
+                <p style="color:red;">2</p>
+            </td>
+            <td></td>
+        </tr>
+        <td>12.</td>
+        <td>13-09-2025 Saturday</td>
+        <td>
+            <p style="color:blue;">4</p>
+        </td>
+        <td>3</td>
+        <td>
+            <p style="color:red;">1</p>
+        </td>
+        <td></td>
+        </tr>
+
+</body>
+
+</html>
+
+
+
+
+-----------------------------------------------------------------------------------------------
+
+
+
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+
+
+
+        /* Center the image and position the close button */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+
+
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i
+            class="fas fa-file"></i></button>
+
+    <div id="id01" class="modal">
+
+
+
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+
+
+                <h3>Attendance Detail of 11-10-2025</h3>
+
+                <table>
+                    <tr>
+                        <th>Sr.</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                        <th>Staff</th>
+                        <th>Siot Type</th>
+                        <th>status</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>9:30AM-10:25AM</td>
+                        <td>303105383</td>
+                        <td>Mr.khan zlyam</td>
+                        <td>Lecture</td>
+                        <td>
+                            <!DOCTYPE html>
+                            <html>
+
+                            <head>
+
+                                <style>
+                                    .button {
+                                        background-color: #ff1a1a;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        margin: 4px 2px;
+                                        border-radius: 16px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body><button class="button">Absent</button></body>
+
+                            </html>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>10:30AM-11:20AM</td>
+                        <td>303105361</td>
+                        <td>Ms.Sonali Roupchand korl</td>
+                        <td>Lecture</td>
+                        <td>
+                            <!DOCTYPE html>
+                            <html>
+
+                            <head>
+
+                                <style>
+                                    .button {
+                                        background-color: #ff1a1a;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        margin: 4px 2px;
+                                        border-radius: 16px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body><button class="button">Absent</button></body>
+
+                            </html>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>12:20PM-1:15PM</td>
+                        <td>303105375</td>
+                        <td>Mr.Ronl DAS</td>
+                        <td>Lecture</td>
+                        <td>
+                            <!DOCTYPE html>
+                            <html>
+
+                            <head>
+
+                                <style>
+                                    .button {
+                                        background-color: #ff1a1a;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        margin: 4px 2px;
+                                        border-radius: 16px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body><button class="button">Absent</button></body>
+
+                            </html>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>1:15PM-2:10PM</td>
+                        <td>303108443</td>
+                        <td>Mr.Raumak Ray</td>
+                        <td>lecture</td>
+                        <td>
+                            <!DOCTYPE html>
+                            <html>
+
+                            <head>
+
+                                <style>
+                                    .button {
+                                        background-color: #ff1a1a;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        margin: 4px 2px;
+                                        border-radius: 16px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body><button class="button">Absent</button></body>
+
+                            </html>
+                        </td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>
+
+
+-------------------------------------------------------------------------------------------------
+<!DOCTYPE html>
+<html>
+
+<head>
+
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+
+
+
+
+    <i class="fas fa-file"></i>
+
+
+
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+=============================================================================================
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <style>
+        /* Set a style for all buttons */
+        button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 14px 20px;
+            margin: 8px 0;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+
+
+
+        /* Center the image and position the close button */
+        .imgcontainer {
+            text-align: center;
+            margin: 24px 0 12px 0;
+            position: relative;
+        }
+
+
+
+
+        /* The Modal (background) */
+        .modal {
+            display: none;
+            /* Hidden by default */
+            position: fixed;
+            /* Stay in place */
+            z-index: 1;
+            /* Sit on top */
+            left: 0;
+            top: 0;
+            width: 100%;
+            /* Full width */
+            height: 100%;
+            /* Full height */
+            overflow: auto;
+            /* Enable scroll if needed */
+            background-color: rgb(0, 0, 0);
+            /* Fallback color */
+            background-color: rgba(0, 0, 0, 0.4);
+            /* Black w/ opacity */
+            padding-top: 60px;
+        }
+
+        /* Modal Content/Box */
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto 15% auto;
+            /* 5% from the top, 15% from the bottom and centered */
+            border: 1px solid #888;
+            width: 80%;
+            /* Could be more or less, depending on screen size */
+        }
+
+        /* The Close Button (x) */
+        .close {
+            position: absolute;
+            right: 25px;
+            top: 0;
+            color: #000;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+
+        /* Add Zoom Animation */
+        .animate {
+            -webkit-animation: animatezoom 0.6s;
+            animation: animatezoom 0.6s
+        }
+
+        @-webkit-keyframes animatezoom {
+            from {
+                -webkit-transform: scale(0)
+            }
+
+            to {
+                -webkit-transform: scale(1)
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0;
+            width: 100%;
+            border: 1px solid #ddd;
+        }
+
+        th,
+        td {
+            text-align: left;
+            padding: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+    <button onclick="document.getElementById('id01').style.display='block'" style="width:auto;"><i
+            class="fas fa-file"></i></button>
+
+    <div id="id01" class="modal">
+
+
+
+        <form class="modal-content animate" action="/action_page.php" method="post">
+            <div class="imgcontainer">
+                <span onclick="document.getElementById('id01').style.display='none'" class="close"
+                    title="Close Modal">&times;</span>
+
+
+                <h3>Attendance Detail of 11-10-2025</h3>
+
+                <table>
+                    <tr>
+                        <th>Sr.</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                        <th>Staff</th>
+                        <th>Siot Type</th>
+                        <th>status</th>
+                    </tr>
+                    <tr>
+                        <td>1.</td>
+                        <td>9:30AM-10:25AM</td>
+                        <td>303105383</td>
+                        <td>Mr.khan zlyam</td>
+                        <td>Lecture</td>
+                        <td>
+                            <!DOCTYPE html>
+                            <html>
+
+                            <head>
+
+                                <style>
+                                    .button {
+                                        background-color: #ff1a1a;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        margin: 4px 2px;
+                                        border-radius: 16px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body><button class="button">Absent</button></body>
+
+                            </html>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>2.</td>
+                        <td>10:30AM-11:20AM</td>
+                        <td>303105361</td>
+                        <td>Ms.Sonali Roupchand korl</td>
+                        <td>Lecture</td>
+                        <td>
+                            <!DOCTYPE html>
+                            <html>
+
+                            <head>
+
+                                <style>
+                                    .button {
+                                        background-color: #ff1a1a;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        margin: 4px 2px;
+                                        border-radius: 16px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body><button class="button">Absent</button></body>
+
+                            </html>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3.</td>
+                        <td>12:20PM-1:15PM</td>
+                        <td>303105375</td>
+                        <td>Mr.Ronl DAS</td>
+                        <td>Lecture</td>
+                        <td>
+                            <!DOCTYPE html>
+                            <html>
+
+                            <head>
+
+                                <style>
+                                    .button {
+                                        background-color: #ff1a1a;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        margin: 4px 2px;
+                                        border-radius: 16px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body><button class="button">Absent</button></body>
+
+                            </html>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>4.</td>
+                        <td>1:15PM-2:10PM</td>
+                        <td>303108443</td>
+                        <td>Mr.Raumak Ray</td>
+                        <td>lecture</td>
+                        <td>
+                            <!DOCTYPE html>
+                            <html>
+
+                            <head>
+
+                                <style>
+                                    .button {
+                                        background-color: #ff1a1a;
+                                        border: none;
+                                        padding: 10px 20px;
+                                        margin: 4px 2px;
+                                        border-radius: 16px;
+                                    }
+                                </style>
+                            </head>
+
+                            <body><button class="button">Absent</button></body>
+
+                            </html>
+                        </td>
+                    </tr>
+
+
+                </table>
+
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Get the modal
+        var modal = document.getElementById('id01');
+
+        // When the user clicks anywhere outside of the modal, close it
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+
+</body>
+
+</html>

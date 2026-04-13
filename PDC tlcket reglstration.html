@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .page-header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+            animation: slideDown 0.6s ease;
+        }
+
+        .page-header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            letter-spacing: 0.5px;
+        }
+
+        .page-header p {
+            font-size: 15px;
+            opacity: 0.95;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            animation: fadeIn 0.6s ease 0.2s both;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .form-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 35px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .form-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .form-header::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 150px;
+            height: 150px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        .form-header h2 {
+            position: relative;
+            z-index: 2;
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .form-header h2 i {
+            font-size: 32px;
+        }
+
+        .form-header p {
+            position: relative;
+            z-index: 2;
+            font-size: 14px;
+            opacity: 0.95;
+        }
+
+        .form-content {
+            padding: 40px 35px;
+        }
+
+        .form-section {
+            margin-bottom: 35px;
+        }
+
+        .form-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-title {
+            color: #667eea;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #f0f0f0;
+        }
+
+        .section-title i {
+            color: #764ba2;
+            font-size: 18px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        label .required {
+            color: #e74c3c;
+            margin-left: 3px;
+        }
+
+        input[type=text],
+        input[type=email],
+        input[type=tel],
+        input[type=date],
+        select,
+        textarea {
+            padding: 12px 14px;
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        input[type=text]:focus,
+        input[type=email]:focus,
+        input[type=tel]:focus,
+        input[type=date]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            background: #f8faff;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        input[type=text]::placeholder,
+        input[type=email]::placeholder,
+        input[type=tel]::placeholder,
+        textarea::placeholder {
+            color: #999;
+        }
+
+        .input-group {
+            position: relative;
+        }
+
+        .input-group i {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #999;
+            pointer-events: none;
+        }
+
+        select {
+            padding-right: 40px;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23667eea' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 14px center;
+            padding-right: 40px;
+        }
+
+        /* Agreement Checkbox */
+        .agreement-box {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(118, 75, 162, 0.05) 100%);
+            border: 2px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .checkbox-group input[type=checkbox] {
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+
+        .checkbox-group label {
+            margin: 0;
+            text-transform: none;
+            letter-spacing: normal;
+            color: #555;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 1.5;
+            cursor: pointer;
+        }
+
+        /* Button Styles */
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 35px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            flex: 1;
+            min-width: 180px;
+            padding: 14px 25px;
+            border: none;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(-1px);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(127, 140, 141, 0.3);
+        }
+
+        .btn i {
+            font-size: 16px;
+        }
+
+        /* Info Box */
+        .info-note {
+            background: linear-gradient(135deg, rgba(46, 204, 113, 0.1) 0%, rgba(39, 174, 96, 0.05) 100%);
+            border-left: 4px solid #27ae60;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #229954;
+            line-height: 1.6;
+        }
+
+        .info-note strong {
+            color: #1e8449;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .page-header h1 {
+                font-size: 24px;
+            }
+
+            .form-header {
+                padding: 25px 20px;
+            }
+
+            .form-header h2 {
+                font-size: 22px;
+            }
+
+            .form-content {
+                padding: 25px 20px;
+            }
+
+            .form-row {
+                gap: 15px;
+                margin-bottom: 15px;
+            }
+
+            .section-title {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .button-group {
+                gap: 12px;
+                margin-top: 28px;
+            }
+
+            .btn {
+                min-width: 150px;
+                padding: 12px 18px;
+                font-size: 13px;
+            }
+
+            .form-section {
+                margin-bottom: 28px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 12px;
+            }
+
+            .page-header {
+                margin-bottom: 25px;
+            }
+
+            .page-header h1 {
+                font-size: 20px;
+                gap: 8px;
+            }
+
+            .page-header h1 i {
+                font-size: 24px;
+            }
+
+            .form-header {
+                padding: 20px 15px;
+            }
+
+            .form-header h2 {
+                font-size: 19px;
+                gap: 10px;
+            }
+
+            .form-header h2 i {
+                font-size: 24px;
+            }
+
+            .form-content {
+                padding: 18px 15px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+                gap: 12px;
+                margin-bottom: 12px;
+            }
+
+            .form-section {
+                margin-bottom: 22px;
+            }
+
+            label {
+                font-size: 12px;
+                margin-bottom: 8px;
+            }
+
+            input[type=text],
+            input[type=email],
+            input[type=tel],
+            input[type=date],
+            select,
+            textarea {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+
+            .section-title {
+                font-size: 13px;
+                margin-bottom: 16px;
+                gap: 10px;
+            }
+
+            .agreement-box {
+                padding: 15px;
+                margin-bottom: 20px;
+            }
+
+            .checkbox-group {
+                gap: 10px;
+            }
+
+            .checkbox-group input[type=checkbox] {
+                width: 18px;
+                height: 18px;
+            }
+
+            .checkbox-group label {
+                font-size: 12px;
+            }
+
+            .button-group {
+                flex-direction: column;
+                gap: 10px;
+                margin-top: 22px;
+            }
+
+            .btn {
+                width: 100%;
+                min-width: auto;
+                padding: 12px 16px;
+                font-size: 12px;
+            }
+
+            .info-note {
+                padding: 12px;
+                font-size: 11px;
+                margin-top: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1><i class="fas fa-ticket-alt"></i> PDC Ticket Registration</h1>
+        <p>Permanent Deposit Certificate Booking Form</p>
+    </div>
+
+    <!-- Main Form Container -->
+    <div class="container">
+        <!-- Form Header -->
+        <div class="form-header">
+            <h2><i class="fas fa-clipboard-list"></i> Student Registration Details</h2>
+            <p>Please provide accurate information for PDC ticket allocation</p>
+        </div>
+
+        <!-- Form Content -->
+        <div class="form-content">
+            <form id="pdcForm">
+                <!-- Personal Information Section -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <i class="fas fa-user-circle"></i> Personal Information
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="enrollment">Enrollment No. <span class="required">*</span></label>
+                            <input type="text" id="enrollment" name="enrollment" placeholder="2303031087131" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="studentName">Student Name <span class="required">*</span></label>
+                            <input type="text" id="studentName" name="studentName" placeholder="Enter full name"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="gender">Gender <span class="required">*</span></label>
+                            <select id="gender" name="gender" required>
+                                <option value="">-- Select Gender --</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="dob">Date of Birth <span class="required">*</span></label>
+                            <input type="date" id="dob" name="dob" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Academic Information Section -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <i class="fas fa-graduation-cap"></i> Academic Information
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="institute">Institute <span class="required">*</span></label>
+                            <input type="text" id="institute" name="institute"
+                                placeholder="Parul Institute of Engineering & Technology" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="course">Course <span class="required">*</span></label>
+                            <select id="course" name="course" required>
+                                <option value="">-- Select Course --</option>
+                                <option value="B.Tech">B.Tech</option>
+                                <option value="M.Tech">M.Tech</option>
+                                <option value="BCA">BCA</option>
+                                <option value="MBA">MBA</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="branch">Branch <span class="required">*</span></label>
+                            <input type="text" id="branch" name="branch" placeholder="IT / CSE / EC etc." required>
+                        </div>
+                        <div class="form-group">
+                            <label for="passoutYear">Passout Year <span class="required">*</span></label>
+                            <input type="text" id="passoutYear" name="passoutYear" placeholder="2025-26" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <i class="fas fa-phone"></i> Contact Information
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mobile">Mobile No. <span class="required">*</span></label>
+                            <input type="tel" id="mobile" name="mobile" placeholder="7990377026" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="whatsapp">WhatsApp No. <span class="required">*</span></label>
+                            <input type="tel" id="whatsapp" name="whatsapp" placeholder="Enter WhatsApp number"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Personal Email <span class="required">*</span></label>
+                            <input type="email" id="email" name="email" placeholder="example@gmail.com" required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Location Information Section -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <i class="fas fa-map-marker-alt"></i> Location Details
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="permanentCity">Permanent City/Town/Village <span
+                                    class="required">*</span></label>
+                            <input type="text" id="permanentCity" name="permanentCity" placeholder="Karjan" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="presentCity">Present City/Town/Village <span class="required">*</span></label>
+                            <input type="text" id="presentCity" name="presentCity" placeholder="Enter present location"
+                                required>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Booking Information Section -->
+                <div class="form-section">
+                    <div class="section-title">
+                        <i class="fas fa-info-circle"></i> Booking Details
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="bookingType">Booking Type <span class="required">*</span></label>
+                            <input type="text" id="bookingType" name="bookingType" placeholder="PDC Ticket" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="slotDate">Slot Date <span class="required">*</span></label>
+                            <input type="date" id="slotDate" name="slotDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-row full">
+                        <div class="form-group">
+                            <label for="linkedin">LinkedIn Profile Link</label>
+                            <input type="text" id="linkedin" name="linkedin"
+                                placeholder="https://linkedin.com/in/yourprofile">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Agreement Section -->
+                <div class="agreement-box">
+                    <div class="checkbox-group">
+                        <input type="checkbox" id="agree" name="agree" required>
+                        <label for="agree">
+                            I hereby confirm that all the information provided above is accurate and truthful. I
+                            understand that providing false information may lead to cancellation of my PDC ticket.
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-paper-plane"></i> Save & Send OTP
+                    </button>
+                    <button type="reset" class="btn btn-secondary">
+                        <i class="fas fa-redo"></i> Clear Form
+                    </button>
+                </div>
+
+                <!-- Info Note -->
+                <div class="info-note">
+                    <strong>📌 Important:</strong> An OTP will be sent to your registered mobile number and email for
+                    verification. Please keep your documents ready for submission.
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('pdcForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Simple validation
+            const form = this;
+            if (!form.checkValidity()) {
+                alert('Please fill in all required fields');
+                return;
+            }
+
+            // Simulating OTP sending
+            const submitBtn = form.querySelector('.btn-primary');
+            const originalHTML = submitBtn.innerHTML;
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending OTP...';
+            submitBtn.disabled = true;
+
+            setTimeout(() => {
+                alert('✓ OTP has been sent to your registered mobile number and email!');
+                submitBtn.innerHTML = originalHTML;
+                submitBtn.disabled = false;
+            }, 2500);
+        });
+
+        // Format phone number input
+        document.querySelectorAll('input[type="tel"]').forEach(input => {
+            input.addEventListener('input', function () {
+                this.value = this.value.replace(/[^0-9]/g, '').slice(0, 10);
+            });
+        });
+    </script>
+
+</body>
+
+</html>

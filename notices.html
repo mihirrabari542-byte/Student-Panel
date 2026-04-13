@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: Arial;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+        }
+
+
+        .button__badge {
+            background-color: #fa3e3e;
+            border-radius: 9px;
+            color: white;
+            right: -10px;
+            padding: 2px 6px;
+            border-radius: 50%;
+            background-color: red;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+
+
+
+    <div class="tab">
+        <button class="tablinks" onclick="openCity(event, 'Notification')">Notification</button>
+
+
+
+
+
+
+        <button class="tablinks" onclick="openCity(event, 'Circular')">Circular</button>
+        <div class="tablinks">
+            <span class="button__badge">4</span>
+        </div>
+
+
+
+
+
+        <button class="tablinks" onclick="openCity(event, 'LMS Notification')">LMS Notification</button>
+        <button class="tablinks" onclick="openCity(event,'Student Announcement')">Student Announcement</button>
+    </div>
+
+
+
+
+
+    <div id="Notification" class="tabcontent">
+        <h3>Notification</h3>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for supplementary Exam of Theory Subjectin BTech semester-4 supplementart Exam.  Appiy for supplementary Exam of Theory subject in BTech supplementary Exam semester-4 Summer 2025-26.  Last Date for Appiy is 21-03-2026. ')">&#xf0a2;
+            Appiy for supplementary Exam of Theory Subjectin BTech semester-4
+            supplementart Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for supplementary Exam of Practical subject in BTech semester-4 supplementart Exam.  Appiy for Supplemeutary Exam of Theory Subiect in BTech Supplementary Exam Semester-4 Summer 2025-26. Last Date for Appiy is 21-03-2026. ')">&#xf0a2;
+            Appiy for supplementary Exam of Practical subject in BTech semester-4
+            supplementart Exam.</i>
+        <hr>
+
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for supplementary Exam of Theory Subjectin BTech semester-4 supplementart Exam.  Appiy for supplemeutary Exam of Theory subiect in BTech supplemeutary Exam semester-4 summer 2025-26.  Last Date for Appiy is 21-03-2026.')">&#xf0a2;
+            Appiy for supplementary Exam of Theory Subjectin BTech semester-4
+            supplementart Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for supplementary Exam of practical Subjectin in BTech semester-6 supplementary Exam. Appiy for supplemeutary Exam of Theory subiect in BTech supplementary Exam semester-6 summer 2025-26. Last Date for Appiy is 21-03-2026.')">&#xf0a2;
+            Appiy for supplementary Exam of practical Subjectin in BTech semester-6 supplementary Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for supplementary Exam of Theory subject in BTech semester-8 supplementary Exam.  Appiy for supplemeutary Exam of Theory subiect in BTech supplementary Exam semester-8 summer 2025-26.  Last Date for Appiy is 21-03-2026.')">&#xf0a2;
+            Appiy for supplementary Exam of Theory subject in BTech semester-8 supplementary Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for supplementary Exam of practical Subjectin in BTech semester-8 supplementary Exam.  Appy for supplemeutary Exam of Theory subiect in BTech supplementary Exam of Theory subiect in BTech supplementay Exam semester-8 summer 2025-26.  last Date for Appiy is 21-03-2026. ')">&#xf0a2;
+            Appiy for supplementary Exam of practical Subjectin in BTech semester-8 supplementary Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Admit card Generated for BTech semester-8 suppementary Exam.  Appiy for supplemeutary Exam of Theoty subiect in BTech supplementary Exam of Theory subiect in BTech supplemeutary Exam of Theory subiect in BTech supplementary Exam semester-8 summer 2025-26.')">&#xf0a2;
+            Admit card Generated for BTech semester-8 suppementary Exam.</i>
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa" onclick="showPopup('Udaan Alamni Scholarship.')">&#xf0a2;
+            Udaan Alamni Scholarship. </i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa" onclick="showPopup('Udaan Alamni Scholarship.')">&#xf0a2;
+            Udaan Alamni Scholarship. </i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Apply for Supplementary Exam of Theory subject in BTech semester-5 supplementary Exam.   Appiy for supplementary Exam of Theory subiect in BTech supplementary Exam semester-5 summer 2025-26.  Last Date for Appiy is 21-03-2026.')">&#xf0a2;
+            Apply for Supplementary Exam of Theory subject in BTech semester-5 supplementary Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Apply for Supplementary Exam of practical subject in BTech semester-5 supplementary Exam.  Appiy for supplementary Exam of Theory subiect in BTech supplemetary Exam semester-5 summer 2025-26. Last Date for Appiy is 21-03-2026.')">&#xf0a2;
+            Apply for Supplementary Exam of practical subject in BTech semester-5 supplementary Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Apply for Supplementary Exam of Theory subject in BTech semester-3 supplementary Exam.  Appiy for supplemeutary Exam of Theory subiect in BTech supplementary Exam semester-4 summer 2025-26.  Last Date for Appiy is 21-03-2026.')">&#xf0a2;
+            Apply for Supplementary Exam of Theory subject in BTech semester-3 supplementary Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for Supplementary Exam of Practical subject in BTech semester-3 supplementary Exam.  Appiy for supplementary Exam of Theory subiect in BTech supplementary Exam semeste-3 summer 2025-26.     Last Date for Appiy is 21-03-2026.')">&#xf0a2;
+            Appiy for Supplementary Exam of Practical subject in BTech semester-3 supplementary Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for Supplementary Exam of Theory subject in BTech semester-7 supplementary Exam.  Appiy for supplemeutary Exam of Theory subiect in BTech supplementary Exam semester-7 summer 2025-26.  Last Date for Appiy is 21-03-20.')">&#xf0a2;
+            Appiy for Supplementary Exam of Theory subject in BTech semester-7 supplementary Exam.</i>
+
+        <hr>
+        <i style="color:blue; cursor:pointer;" class="fa"
+            onclick="showPopup('Appiy for supplementary Exam of Practical subject in BTech semester-7 supplementary Exam.  Appiy for supplemeutary Exam of Theory subiect in BTech supplementary Exan semester-7 summer 2025-26.')">&#xf0a2;
+            Appiy for supplementary Exam of Practical subject in BTech semester-7 supplementary Exam.</i>
+
+    </div>
+
+
+
+
+
+
+
+    <div id="Circular" class="tabcontent">
+        <h3>Circular</h3>
+        <p style="color:blue;">! No circular to dispiay.</p>
+    </div>
+
+    <div id="LMS Notification" class="tabcontent">
+        <h3>LMS Notification</h3>
+        <p style="color:blue;">! No LMS Notification to dispiay.</p>
+    </div>
+
+    <div id="Student Announcement" class="tabcontent">
+        <h3>Student Announcement</h3>
+        <p></p>
+    </div>
+
+
+
+
+    <script>
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+
+        function showPopup(message) {
+            alert(message);
+        }
+    </script>
+
+</body>

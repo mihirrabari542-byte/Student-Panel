@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Excess Fee Application - MIHIR GOPALBHAI RABARI</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .page-header {
+            margin-bottom: 40px;
+        }
+
+        .page-title {
+            font-size: 36px;
+            font-weight: 300;
+            color: #999;
+            margin-bottom: 5px;
+        }
+
+        .page-subtitle {
+            font-size: 14px;
+            color: #999;
+            letter-spacing: 1px;
+        }
+
+        .section-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #20a39e;
+            text-transform: uppercase;
+        }
+
+        .section-header i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+
+        .summary-section {
+            margin-bottom: 40px;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            color: white;
+            flex-shrink: 0;
+        }
+
+        .card-icon.blue {
+            background: #1e88e5;
+        }
+
+        .card-icon.gold {
+            background: #d4af37;
+        }
+
+        .card-icon.teal {
+            background: #20c9c9;
+        }
+
+        .card-icon.red {
+            background: #e74c3c;
+        }
+
+        .card-icon.gray {
+            background: #d0d0d0;
+        }
+
+        .card-content {
+            flex: 1;
+        }
+
+        .card-label {
+            font-size: 12px;
+            color: #999;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .card-value {
+            font-size: 32px;
+            font-weight: 300;
+            color: #333;
+        }
+
+        .list-section {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .list-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .add-button {
+            background: #20c9c9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background 0.3s;
+        }
+
+        .add-button:hover {
+            background: #1aa5a0;
+        }
+
+        .no-record {
+            background: #f8d7da;
+            border: 1px solid #f5c6cb;
+            color: #c0392b;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            min-height: 80px;
+        }
+
+        .no-record i {
+            font-size: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .cards-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .page-title {
+                font-size: 28px;
+            }
+
+            .list-header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+
+            .add-button {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .cards-container {
+                grid-template-columns: 1fr;
+            }
+
+            .page-title {
+                font-size: 24px;
+            }
+
+            .card {
+                gap: 15px;
+                padding: 20px;
+            }
+
+            .card-value {
+                font-size: 28px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Excess Fee Application <span class="page-subtitle">MIHIR GOPALBHAI RABARI</span></h1>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <div class="section-header">
+                <i class="fas fa-chart-pie"></i>
+                Excess Fee Application Summary
+            </div>
+
+            <div class="cards-container">
+                <!-- Total Card -->
+                <div class="card">
+                    <div class="card-icon blue">
+                        <i class="fas fa-database"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-label">Total</div>
+                        <div class="card-value">0</div>
+                    </div>
+                </div>
+
+                <!-- Pending Card -->
+                <div class="card">
+                    <div class="card-icon gold">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-label">Pending</div>
+                        <div class="card-value">0</div>
+                    </div>
+                </div>
+
+                <!-- Approved Card -->
+                <div class="card">
+                    <div class="card-icon teal">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-label">Approved</div>
+                        <div class="card-value">0</div>
+                    </div>
+                </div>
+
+                <!-- Rejected Card -->
+                <div class="card">
+                    <div class="card-icon red">
+                        <i class="fas fa-times"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-label">Rejected</div>
+                        <div class="card-value">0</div>
+                    </div>
+                </div>
+
+                <!-- Cancelled Card -->
+                <div class="card">
+                    <div class="card-icon gray">
+                        <i class="fas fa-ban"></i>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-label">Cancelled</div>
+                        <div class="card-value">0</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- List Section -->
+        <div class="list-section">
+            <div class="list-header">
+                <div class="section-header">
+                    <i class="fas fa-list"></i>
+                    Exces Fee Application List
+                </div>
+                <button class="add-button">
+                    <i class="fas fa-plus"></i>
+                    Add New Application
+                </button>
+            </div>
+
+            <div class="no-record">
+                <i class="fas fa-exclamation-circle"></i>
+                No Record Found
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
